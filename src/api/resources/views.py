@@ -84,7 +84,7 @@ class BaseHouseholdView(BaseAPIView):
             self.perms_lookup_base = f"{self.perms_lookup_base}__"
         mpas_interviewyears_filter = {
             f"{self.perms_lookup_base}settlement__mpa__in": mpas,
-            f"{self.perms_lookup_base}interviewyear__in": interviewyears,
+            f"{self.perms_lookup_base}yearmonitoring__in": interviewyears,
         }
         self.queryset = self.get_queryset().filter(**mpas_interviewyears_filter)
 
@@ -110,7 +110,7 @@ class BaseFGDView(BaseAPIView):
 class BaseHouseholdRelatedView(BaseHouseholdView):
     filterset_class = BaseHouseholdFilterSet
     order_by = [
-        "interviewyear",
+        "household__yearmonitoring",
         "household__settlement__mpa__pk",
         "household__settlement__pk",
         "household__householdid",
@@ -212,7 +212,7 @@ class ListHousehold(BaseHouseholdView):
     serializer_class = HouseholdSerializer
     serializer_class_csv = HouseholdSerializerCSV
     filterset_class = HouseholdKIIFilterSet
-    order_by = ["interviewyear", "settlement__mpa__pk", "settlement__pk", "householdid"]
+    order_by = ["household__yearmonitoring", "settlement__mpa__pk", "settlement__pk", "householdid"]
     queryset = Household.objects.select_related("settlement__mpa", "settlement")
 
 
@@ -220,7 +220,7 @@ class ListKII(BaseAPIView):
     serializer_class = KIISerializer
     serializer_class_csv = KIISerializerCSV
     filterset_class = HouseholdKIIFilterSet
-    order_by = ["interviewyear", "settlement__mpa__pk", "settlement__pk"]
+    order_by = ["household__yearmonitoring", "settlement__mpa__pk", "settlement__pk"]
     queryset = KII.objects.select_related("settlement__mpa", "settlement")
 
 

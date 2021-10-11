@@ -927,10 +927,6 @@ class Household(BaseModel):
     def mpa(self):
         return self.settlement.mpa.mpaid
 
-    @property
-    def interviewyear(self):
-        return self.interviewdate.year
-
     def __str__(self):
         return str(self.householdid) or ""
 

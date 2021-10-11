@@ -228,7 +228,7 @@ class HouseholdSerializerCSV(ReportSerializer):
         ReportField("lonsphere", "lonsphere"),
         ReportField("interviewday", "interviewday"),
         ReportField("interviewmonth", "interviewmonth"),
-        ReportField("interviewyear", "interviewyear"),
+        ReportField("yearmonitoring", "yearmonitoring"),
         ReportField("interviewdate", "interviewdate"),
         ReportField("interviewstart", "interviewstart"),
         ReportField("interviewend", "interviewend"),
