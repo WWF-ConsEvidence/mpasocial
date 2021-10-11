@@ -212,7 +212,7 @@ class ListHousehold(BaseHouseholdView):
     serializer_class = HouseholdSerializer
     serializer_class_csv = HouseholdSerializerCSV
     filterset_class = HouseholdKIIFilterSet
-    order_by = ["household__yearmonitoring", "settlement__mpa__pk", "settlement__pk", "householdid"]
+    order_by = ["yearmonitoring", "settlement__mpa__pk", "settlement__pk", "householdid"]
     queryset = Household.objects.select_related("settlement__mpa", "settlement")
 
 
