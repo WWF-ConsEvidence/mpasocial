@@ -44,7 +44,7 @@ AWS_SECRET_ACCESS_KEY=
 AWS_REGION=
 ```
 
-#### Local environment intialization
+#### Local environment initialization
 
 Once Docker is installed and local environment variables set, run the following:
 
