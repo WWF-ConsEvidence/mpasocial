@@ -1,0 +1,11 @@
+[{"model": "api.lkpfreqfishtime", "fields":{"code":"1","bahasaindonesia":"Satu kali atau tidak pernah","english":"Every day","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"2","bahasaindonesia":"Berberapa kali","english":"A few times a week","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"3","bahasaindonesia":"Berberapa kali dalanm satu bulan","english":"A few times per month","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"4","bahasaindonesia":"Berberapa kali dalam satu minggu","english":"A few times per year","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"5","bahasaindonesia":"Lebih dari berberapa kali dalam satu minggu","english":"Once in a year or less","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"994","bahasaindonesia":"SKIP","english":"Skipped question","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"995","bahasaindonesia":"**Tidak ada data**","english":"No data","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"996","bahasaindonesia":"Lainnya","english":"Other","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"997","bahasaindonesia":"Tidak Tahu","english":"Do Not Know","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"998","bahasaindonesia":"Tidak Sesuai","english":"Not Applicable","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpfreqfishtime", "fields":{"code":"999","bahasaindonesia":"Menolak","english":"Refused","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

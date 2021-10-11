@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  mpasocial_db:
+    container_name: mpasocial_db
+    image: postgis/postgis:13-3.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    ports:
+      - 5434:5432
+
+  mpasocial_api:
+    container_name: mpasocial_api
+    build:
+        context: .
+        dockerfile: Dockerfile
+    image: mpasocial/api:latest
+    volumes:
+      - $PWD/src:/var/projects/webapp
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+
+    links:
+      - mpasocial_db

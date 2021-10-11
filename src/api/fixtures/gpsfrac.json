@@ -1,0 +1,10 @@
+[{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"0","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"1","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"2","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"3","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"4","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"5","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"6","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"7","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"8","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpgpsfraction", "fields":{"gpsfrac":"9","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

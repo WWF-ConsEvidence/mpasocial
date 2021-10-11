@@ -1,0 +1,10 @@
+[{"model": "api.lkpproportion", "fields":{"code":"1","bahasaindonesialabel":"Tidak ada","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"2","bahasaindonesialabel":"Sebagian kecil","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion", "fields":{"code":"3","bahasaindonesialabel":"Sekitar setengah","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"4","bahasaindonesialabel":"Sebagian besar","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"5","bahasaindonesialabel":"Semuanya","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"994","bahasaindonesialabel":"SKIP","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"995","bahasaindonesialabel":"**Tidak ada data**","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"997","bahasaindonesialabel":"Tidak Tahu","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"998","bahasaindonesialabel":"Tidak Sesuai","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpproportion",  "fields":{"code":"999","bahasaindonesialabel":"Menolak","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

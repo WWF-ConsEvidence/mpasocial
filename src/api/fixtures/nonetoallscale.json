@@ -1,0 +1,10 @@
+[{"model": "api.lkpnonetoallscale",  "fields":{"code":"1","bahasaindonesia":"Tidak ada","english":"None","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"2","bahasaindonesia":"Sebagian kecil","english":"Some","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"3","bahasaindonesia":"Sekitar setengah","english":"About Half","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"4","bahasaindonesia":"Sebagian besar","english":"Most","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"5","bahasaindonesia":"Semuanya","english":"All","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"994","bahasaindonesia":"SKIP","english":"Skipped question","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"995","bahasaindonesia":"**Tidak ada data**","english":"No data","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"997","bahasaindonesia":"Tidak Tahu","english":"Do Not Know","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"998","bahasaindonesia":"Tidak Sesuai","english":"Not Applicable","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
+{"model": "api.lkpnonetoallscale",  "fields":{"code":"999","bahasaindonesia":"Menolak","english":"Refused","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]
