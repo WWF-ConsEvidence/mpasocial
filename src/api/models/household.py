@@ -51,7 +51,7 @@ class LkpFishTechCategory(BaseLookupModel):
         ordering = ("code",)
 
     def __str__(self):
-        return self.code
+        return str(self.code)
 
 
 class LkpFishTechnique(BaseLookupModel):
@@ -926,6 +926,10 @@ class Household(BaseModel):
     @property
     def mpa(self):
         return self.settlement.mpa.mpaid
+
+    @property
+    def interviewyear(self):
+        return self.interviewdate.year
 
     def __str__(self):
         return str(self.householdid) or ""

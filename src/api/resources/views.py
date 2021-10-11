@@ -335,7 +335,6 @@ class LookupsListView(generics.ListAPIView):
                 "LkpFishTechnique": LkpFishTechniqueSerializer(
                     LkpFishTechnique.objects.all(), many=True
                 ).data,
-                "LkpGroup": LkpGroupSerializer(LkpGroup.objects.all(), many=True).data,
                 "LkpLivelihood": LkpLivelihoodSerializer(
                     LkpLivelihood.objects.all(), many=True
                 ).data,
