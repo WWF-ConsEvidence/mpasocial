@@ -938,7 +938,13 @@ class Birth(BaseModel):
     infantsurvived = models.PositiveSmallIntegerField(
         choices=YES_NO_CHOICES, default=NODATA[0]
     )
-    dateofdeath = models.DateField(null=True, blank=True)
+    dateofdeath = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueBCValidator(2000),
+            MaxValueBCValidator(timezone.now().year),
+        ],
+        default=NODATA[0],
+    )
 
     def __str__(self):
         return str(self.pk)
@@ -955,7 +961,13 @@ class Death(BaseModel):
         default=NODATA[0],
         validators=[MinValueBCValidator(0), MaxValueBCValidator(150)],
     )
-    datedeath = models.DateField(null=True, blank=True)
+    datedeath = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueBCValidator(2000),
+            MaxValueBCValidator(timezone.now().year),
+        ],
+        default=NODATA[0],
+    )
 
     def __str__(self):
         return self.pk
