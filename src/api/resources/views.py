@@ -104,7 +104,7 @@ class BaseHouseholdView(BaseAPIView):
 
 class BaseFGDView(BaseAPIView):
     filterset_class = BaseFGDFilterSet
-    order_by = ["fgd__fgyear", "fgd__settlement__pk", "fgd__fgdid", "pk"]
+    order_by = ["fgd__yearmonitoring", "fgd__settlement__pk", "fgd__fgdid", "pk"]
 
 
 class BaseHouseholdRelatedView(BaseHouseholdView):
@@ -121,7 +121,7 @@ class BaseHouseholdRelatedView(BaseHouseholdView):
 class BaseKIIView(BaseAPIView):
     filterset_class = BaseKIIFilterSet
     order_by = [
-        "kii_kiiyear",
+        "kii_yearmonitoring",
         "kii__settlement__mpa__pk",
         "kii__settlement__pk",
         "kii__kiiid",
@@ -174,7 +174,7 @@ class ListFGD(BaseAPIView):
     serializer_class = FGDSerializer
     serializer_class_csv = FGDSerializerCSV
     filterset_class = FGDFilterSet
-    order_by = ["fgyear", "settlement__pk", "fgdid"]
+    order_by = ["yearmonitoring", "settlement__pk", "fgdid"]
     queryset = FGD.objects.select_related("settlement")
 
 
@@ -220,7 +220,7 @@ class ListKII(BaseAPIView):
     serializer_class = KIISerializer
     serializer_class_csv = KIISerializerCSV
     filterset_class = HouseholdKIIFilterSet
-    order_by = ["household__yearmonitoring", "settlement__mpa__pk", "settlement__pk"]
+    order_by = ["yearmonitoring", "settlement__mpa__pk", "settlement__pk"]
     queryset = KII.objects.select_related("settlement__mpa", "settlement")
 
 
