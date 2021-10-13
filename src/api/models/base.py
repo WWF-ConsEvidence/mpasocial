@@ -125,7 +125,6 @@ class AreaMixin(models.Model):
 
 
 class Country(BaseChoiceModel):
-    countryid = models.PositiveIntegerField(primary_key=True)
     iso = models.CharField(max_length=5)
     name = models.CharField(max_length=255)
 

@@ -43,7 +43,7 @@ class BaseHouseholdFilterSet(BaseAPIFilterSet):
         return self.int_lookup(queryset, name, value)
 
     def interviewyear_filter(self, queryset, name, value):
-        name = f"household__interviewyear"
+        name = f"household__yearmonitoring"
         return self.int_lookup(queryset, name, value)
 
     def seascape_filter(self, queryset, name, value):
@@ -62,7 +62,7 @@ class BaseHouseholdFilterSet(BaseAPIFilterSet):
         method="mpa_filter",
         help_text=f"Integer ID of associated household survey MPA{BASE_IN_HELPTEXT}",
     )
-    interviewyear = BaseInFilter(
+    yearmonitoring = BaseInFilter(
         method="interviewyear_filter",
         help_text=f"4-digit integer year of associated household survey{BASE_IN_HELPTEXT}",
     )
@@ -136,7 +136,7 @@ class HouseholdKIIFilterSet(BaseAPIFilterSet):
     mpa = BaseInFilter(
         method="mpa_filter", help_text=f"Integer ID of MPA{BASE_IN_HELPTEXT}"
     )
-    interviewyear = BaseInFilter(
+    yearmonitoring = BaseInFilter(
         method="int_lookup", help_text=f"4-digit integer year{BASE_IN_HELPTEXT}"
     )
     seascape = NumberFilter(

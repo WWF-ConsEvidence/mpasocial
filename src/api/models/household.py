@@ -51,7 +51,7 @@ class LkpFishTechCategory(BaseLookupModel):
         ordering = ("code",)
 
     def __str__(self):
-        return self.code
+        return str(self.code)
 
 
 class LkpFishTechnique(BaseLookupModel):

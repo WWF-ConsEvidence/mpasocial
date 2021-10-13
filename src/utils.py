@@ -21,4 +21,4 @@ def upsert_mpa_interviewyear(mpa, year):
 def populate_mpa_interviewyears(*args):
     households = Household.objects.all()
     for household in households:
-        upsert_mpa_interviewyear(household.mpa, household.interviewyear)
+        upsert_mpa_interviewyear(household.mpa, household.yearmonitoring)
