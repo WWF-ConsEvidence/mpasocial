@@ -68,7 +68,7 @@ class KII(BaseModel):
     drulesoc = models.PositiveSmallIntegerField(
         choices=KII_FREQ_CHOICES, default=NODATA[0]
     )
-    pilotnestedness = models.PositiveSmallIntegerField(default=NODATA[0])
+    pilotnestedness = models.CharField(max_length=255, default=str(NODATA[0]))
     rulecomml = models.TextField(default=str(NODATA[0]))
     rulecomm = models.TextField(default=str(NODATA[0]))
     ruleawarel = models.TextField(default=str(NODATA[0]))
@@ -357,6 +357,7 @@ class Right(BaseModel):
     userrulesinc = models.PositiveSmallIntegerField(
         choices=KII_RULE_INCLUDED_CHOICES, default=NODATA[0]
     )
+    notes = models.CharField(max_length=255, default=str(NODATA[0]))
 
     def __str__(self):
         return self.userrule
@@ -386,12 +387,11 @@ class Zone(BaseModel):
     zonetypel = models.CharField(max_length=255, default=str(NODATA[0]))
     zonetype = models.CharField(max_length=255, default=str(NODATA[0]))
     zonequantity = models.PositiveSmallIntegerField(default=NODATA[0])
-    zoneorg = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
-    )
+    zoneorg = models.CharField(max_length=255, default=str(NODATA[0]))
     zonecoord = models.PositiveSmallIntegerField(
         choices=KII_FREQ_CHOICES, default=NODATA[0]
     )
+    notes = models.CharField(max_length=255, default=str(NODATA[0]))
 
     def __str__(self):
         return self.zonetype

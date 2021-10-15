@@ -111,7 +111,8 @@ class Household(BaseModel):
         (3, "Hanya satu atau dua bulan / Only one or two months a year"),
     ] + SKIP_CODES
     RELIGION_CHOICES = [
-        (1, "Kristen / Christian"),
+        (1.1, "Kristen / Christian"),
+        (1.2, "Katolik / Catholic"),
         (2, "Islam / Muslim"),
         (3, "Hindu / Hindu"),
         (4, "Budha / Buddhist"),
@@ -270,7 +271,7 @@ class Household(BaseModel):
         related_name="tertiaryfishtechnique_households",
     )
     lessproductivedaysfishing = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(365)], default=NODATA[0]
+        validators=[MaxValueBCValidator(999)], default=NODATA[0]
     )
     poorcatch = models.PositiveIntegerField(default=NODATA[0])
     poorcatchunits = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -280,7 +281,7 @@ class Household(BaseModel):
     poorfishincome = models.PositiveIntegerField(default=NODATA[0])
     poorfishincomeunits = models.CharField(max_length=255, default=str(NODATA[0]))
     moreproductivedaysfishing = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(365)], default=NODATA[0]
+        validators=[MaxValueBCValidator(999)], default=NODATA[0]
     )
     goodcatch = models.PositiveIntegerField(default=NODATA[0])
     goodcatchunits = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -959,7 +960,7 @@ class Death(BaseModel):
         max_digits=5,
         decimal_places=2,
         default=NODATA[0],
-        validators=[MinValueBCValidator(0), MaxValueBCValidator(150)],
+        validators=[MinValueBCValidator(0), MaxValueBCValidator(999)],
     )
     datedeath = models.PositiveSmallIntegerField(
         validators=[
@@ -1010,7 +1011,7 @@ class Demographic(BaseModel):
         max_digits=5,
         decimal_places=2,
         default=NODATA[0],
-        validators=[MinValueBCValidator(0), MaxValueBCValidator(150)],
+        validators=[MinValueBCValidator(0), MaxValueBCValidator(999)],
     )
     individualgender = models.IntegerField(choices=GENDER_CHOICES, default=NODATA[0])
     individualeducation = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -1027,10 +1028,10 @@ class Demographic(BaseModel):
         choices=YES_NO_CHOICES, default=NODATA[0]
     )
     individualdaysunwell = models.PositiveIntegerField(
-        validators=[MaxValueBCValidator(31)], default=NODATA[0]
+        validators=[MaxValueBCValidator(999)], default=NODATA[0]
     )
     individuallostdays = models.PositiveIntegerField(
-        validators=[MaxValueBCValidator(31)], default=NODATA[0]
+        validators=[MaxValueBCValidator(999)], default=NODATA[0]
     )
 
     def __str__(self):
@@ -1090,7 +1091,7 @@ class NonMarineOrganizationMembership(BaseModel):
     )
     days = (
         models.PositiveIntegerField(
-            default=NODATA[0], validators=[MaxValueBCValidator(365)]
+            default=NODATA[0], validators=[MaxValueBCValidator(999)]
         ),
     )
     contribution = models.IntegerField(default=NODATA[0])
@@ -1113,7 +1114,7 @@ class MarineOrganizationMembership(BaseModel):
     )
     days = (
         models.PositiveIntegerField(
-            default=NODATA[0], validators=[MaxValueBCValidator(365)]
+            default=NODATA[0], validators=[MaxValueBCValidator(999)]
         ),
     )
     contribution = models.IntegerField(default=NODATA[0])

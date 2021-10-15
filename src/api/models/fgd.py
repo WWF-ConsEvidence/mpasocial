@@ -48,73 +48,37 @@ class FGD(BaseModel):
     starttime = models.TimeField()
     endtime = models.TimeField()
     maleparticipants = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(100)], default=NODATA[0]
+        validators=[MaxValueBCValidator(999)], default=NODATA[0]
     )
     femaleparticipants = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(100)], default=NODATA[0]
+        validators=[MaxValueBCValidator(999)], default=NODATA[0]
     )
     fgdversion = models.ForeignKey(
         FGDSurveyVersion, on_delete=models.PROTECT, default=NODATA[0]
     )
     fgroundname = models.CharField(max_length=255, default=str(NODATA[0]))
     fgroundboat = models.CharField(max_length=255, default=str(NODATA[0]))
-    fgroundtime = models.DecimalField(
-        max_digits=6,
-        decimal_places=3,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    fgroundtime = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    fgrounddist = models.DecimalField(
-        max_digits=6,
-        decimal_places=3,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    fgrounddist = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    fgroundsize = models.DecimalField(
-        max_digits=10,
-        decimal_places=6,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    fgroundsize = models.CharField(max_length=255, default=str(NODATA[0])
     )
     mpaname = models.CharField(max_length=255, default=str(NODATA[0]))
     mpaboat = models.CharField(max_length=255, default=str(NODATA[0]))
-    mpatime = models.DecimalField(
-        max_digits=6,
-        decimal_places=3,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    mpatime = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    mpadist = models.DecimalField(
-        max_digits=6,
-        decimal_places=3,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    mpadist = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    mpasize = models.DecimalField(
-        max_digits=10,
-        decimal_places=6,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    mpasize = models.CharField(max_length=255, default=str(NODATA[0])
     )
     ntname = models.CharField(max_length=255, default=str(NODATA[0]))
     ntboat = models.CharField(max_length=255, default=str(NODATA[0]))
-    nttime = models.DecimalField(
-        max_digits=6,
-        decimal_places=3,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    nttime = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    ntdist = models.DecimalField(
-        max_digits=6,
-        decimal_places=3,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    ntdist = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    ntsize = models.DecimalField(
-        max_digits=10,
-        decimal_places=6,
-        default=NODATA[0],
-        validators=[MinValueValidator(0)],
+    ntsize = models.CharField(max_length=255, default=str(NODATA[0])
     )
     mpahistl = models.TextField(default=str(NODATA[0]))
     mpahist = models.TextField(default=str(NODATA[0]))
@@ -231,33 +195,25 @@ class FGD(BaseModel):
     othersources = models.TextField(default=str(NODATA[0]))
     traditionalgovernancel = models.TextField(default=str(NODATA[0]))
     traditionalgovernance = models.TextField(default=str(NODATA[0]))
-    conflictn = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    conflictn = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    congroup = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    congroup = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    conbtwgroups = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    conbtwgroups = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    conbtwgroupngov = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    conbtwgroupngov = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    congov = models.PositiveSmallIntegerField(choices=YES_NO_CHOICES, default=NODATA[0])
-    contypemarine = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    congov = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    contypegov = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    contypemarine = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    contypeusers = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    contypegov = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    contyperec = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    contypeusers = models.CharField(max_length=255, default=str(NODATA[0])
     )
-    contypeother = models.PositiveSmallIntegerField(
-        choices=YES_NO_CHOICES, default=NODATA[0]
+    contyperec = models.CharField(max_length=255, default=str(NODATA[0])
+    )
+    contypeother = models.CharField(max_length=255, default=str(NODATA[0])
     )
     contypeotherspecifyl = models.TextField(default=str(NODATA[0]))
     contypeotherspecify = models.TextField(default=str(NODATA[0]))
