@@ -11,9 +11,9 @@ NODATA = (995, "Tidak Ada data / No data")
 SKIP_CODES = [
     (
         993,
-        "Pertanyaan tidak diminta (tidak ada skip logic) / Question not asked (no skip logic)",
+        "Pertanyaan tidak diminta dalam survei ini (tidak ada skip logic) / Question not asked as part of this survey",
     ),
-    (994, "SKIP / Skipped based on survey skip logic"),
+    (994, "Pertanyaan dilewati berdasarkan skip logic survei / Question skipped based on survey skip logic"),
     NODATA,
     (996, "Lainnya / Other"),
     (997, "Tidak tahu / Do not know"),
