@@ -111,14 +111,14 @@ class Household(BaseModel):
         (3, "Hanya satu atau dua bulan / Only one or two months a year"),
     ] + SKIP_CODES
     RELIGION_CHOICES = [
-        (1.1, "Kristen / Christian"),
-        (1.2, "Katolik / Catholic"),
+        (1, "Kristen / Christian"),
         (2, "Islam / Muslim"),
         (3, "Hindu / Hindu"),
         (4, "Budha / Buddhist"),
         (5, "Yahudi / Jewish"),
         (6, "Kepercataan Tradisional / Traditional Beliefs"),
         (7, "Atheis / Atheist"),
+        (8, "Katolik / Catholic"),
     ] + SKIP_CODES
     SOCIAL_CONFLICT_CHOICES = [
         (1, "Sangat meningkat / Greatly Increased"),
