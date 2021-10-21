@@ -1,6 +1,0 @@
-[{"model": "api.lkpyesnogov", "fields":{"code":"0","bahasaindonesia":"Tidak","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpyesnogov", "fields":{"code":"1","bahasaindonesia":"Ya","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpyesnogov",  "fields":{"code":"995","bahasaindonesia":"Tidak ada data","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpyesnogov",  "fields":{"code":"997","bahasaindonesia":"Tidak tahu","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpyesnogov",  "fields":{"code":"998","bahasaindonesia":"Tidak sesuai","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpyesnogov",  "fields":{"code":"999","bahasaindonesia":"Lainnya","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

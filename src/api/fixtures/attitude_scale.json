@@ -1,9 +1,0 @@
-[{"model": "api.lkpattitudescale", "fields":{"code":"1","bahasaindonesia":"Apakah anda sangat tidak setuju","english":"Strongly disagree","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-  {"model": "api.lkpattitudescale", "fields":{"code":"2","bahasaindonesia":"Tidak setuju","english":"Disagree","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"3","bahasaindonesia":"Netral","english":"Neither agree nor disagree","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"4","bahasaindonesia":"Setuju atau","english":"Agree","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"5","bahasaindonesia":"Dangat setuju dengan pernyataan ini","english":"Strongly agree","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"997","bahasaindonesia":"Tidak Tahu","english":"Do not know","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"998","bahasaindonesia":"Tidak sesuai","english":"Not applicable","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"999","bahasaindonesia":"Menolak","english":"Refused","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpattitudescale", "fields":{"code":"995","bahasaindonesia":"**Tidak ada data**","english":"No Data","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

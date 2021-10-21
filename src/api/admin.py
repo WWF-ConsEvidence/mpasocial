@@ -39,6 +39,21 @@ class UserProfileAdmin(UserAdmin):
             obj.save()
 
 
+@admin.register(FGDSurveyVersion)
+class FGDSurveyVersionAdmin(admin.ModelAdmin):
+    list_display = ["id", "version"]
+
+
+@admin.register(HouseholdSurveyVersion)
+class HouseholdSurveyVersionAdmin(admin.ModelAdmin):
+    list_display = ["id", "version"]
+
+
+@admin.register(KIISurveyVersion)
+class KIISurveyVersionAdmin(admin.ModelAdmin):
+    list_display = ["id", "version"]
+
+
 @admin.register(Birth)
 class BirthAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Birth._meta.get_fields()]
@@ -106,7 +121,7 @@ class LkpLivelihoodAdmin(LookupAdmin):
 
 
 @admin.register(LkpNoneToAllScale)
-class LkpNoneToAllScaleAdmin(admin.ModelAdmin):
+class LkpNoneToAllScaleAdmin(LookupAdmin):
     pass
 
 
@@ -114,14 +129,11 @@ admin.site.register(Country)
 admin.site.register(Death)
 admin.site.register(Demographic)
 admin.site.register(FGD)
-admin.site.register(FGDSurveyVersion)
 admin.site.register(GlobalStep)
 admin.site.register(GlobalThreat)
 admin.site.register(Habitat)
 admin.site.register(HabitatRule)
-admin.site.register(HouseholdSurveyVersion)
 admin.site.register(KII)
-admin.site.register(KIISurveyVersion)
 admin.site.register(LocalStep)
 admin.site.register(LocalThreat)
 admin.site.register(MarineOrganizationMembership)

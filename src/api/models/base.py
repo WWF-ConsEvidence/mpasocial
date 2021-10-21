@@ -125,7 +125,7 @@ class AreaMixin(models.Model):
 
 
 class Country(BaseChoiceModel):
-    iso = models.CharField(max_length=5)
+    iso_id = models.PositiveSmallIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
 
     class Meta:
@@ -218,6 +218,9 @@ class MonitoringStaff(BaseModel):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "monitoring staff"
 
 
 class Settlement(BaseModel):
