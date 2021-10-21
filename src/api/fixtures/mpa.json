@@ -1,6 +1,0 @@
-[{"model": "api.mpa", "pk": "774c9f3e-fd99-4e4b-b97d-65180e9b76f7", "fields":{"name":"Teluk Mayalibit MPA","country_id":"95","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.mpa", "pk": "3bf38c10-d204-41bf-9d9d-d1de0dffab49", "fields":{"name":"Teluk Cenderawasih NP","country_id":"95","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.mpa", "pk": "8b90d013-a1c6-425a-b712-021e761ab649", "fields":{"name":"Kaimana MPA","country_id":"95","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.mpa", "pk": "fcc28a28-d9b4-4c82-b10f-8ed732919ff3", "fields":{"name":"Kofiau dan Pulau  Boo MPA","country_id":"95","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.mpa", "pk": "57ca6636-4038-497e-ad98-f7060897e335", "fields":{"name":"Selat Dampier MPA","country_id":"95","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.mpa", "pk": "d3d25e9a-a2af-4431-9a74-51159fb51e61", "fields":{"name":"Misool Selatan Timur MPA","country_id":"95","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

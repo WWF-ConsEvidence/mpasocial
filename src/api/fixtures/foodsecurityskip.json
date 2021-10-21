@@ -1,8 +1,0 @@
-[{"model": "api.lkpfoodsecurityskip", "fields":{"code":"1","bahasaindonesia":"Sering","english":"Often true","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"2","bahasaindonesia":"Kadang-kadang","english":"Sometimes true","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"3","bahasaindonesia":"Tidak pernah","english":"Never true","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"997","bahasaindonesia":"Tidak tahu","english":"Do not know","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"998","bahasaindonesia":"Tidak sesuai","english":"Not applicable","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"999","bahasaindonesia":"Menolak","english":"Refused","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"994","bahasaindonesia":"SKIP","english":"Skipped question","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}},
-{"model": "api.lkpfoodsecurityskip", "fields":{"code":"995","bahasaindonesia":"**Tidak ada data**","english":"No data","created_on":"2019-04-17 00:00:00+00:00","updated_on":"2019-04-17 00:00:00+00:00"}}]

@@ -22,7 +22,7 @@ class HouseholdSurveyVersion(BaseModel):
     notes = models.TextField(blank=True)
 
     class Meta:
-        ordering = ("version",)
+        ordering = ("id",)
 
     def __str__(self):
         return self.version
@@ -49,6 +49,7 @@ class LkpFreqFishTime(BaseLookupModel):
 class LkpFishTechCategory(BaseLookupModel):
     class Meta:
         ordering = ("code",)
+        verbose_name_plural ="lkp fish tech categories"
 
     def __str__(self):
         return str(self.code)
@@ -271,7 +272,7 @@ class Household(BaseModel):
         related_name="tertiaryfishtechnique_households",
     )
     lessproductivedaysfishing = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(365)], default=NODATA[0]
     )
     poorcatch = models.PositiveIntegerField(default=NODATA[0])
     poorcatchunits = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -281,7 +282,7 @@ class Household(BaseModel):
     poorfishincome = models.PositiveIntegerField(default=NODATA[0])
     poorfishincomeunits = models.CharField(max_length=255, default=str(NODATA[0]))
     moreproductivedaysfishing = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(365)], default=NODATA[0]
     )
     goodcatch = models.PositiveIntegerField(default=NODATA[0])
     goodcatchunits = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -960,7 +961,7 @@ class Death(BaseModel):
         max_digits=5,
         decimal_places=2,
         default=NODATA[0],
-        validators=[MinValueBCValidator(0), MaxValueBCValidator(999)],
+        validators=[MinValueBCValidator(0), MaxValueBCValidator(150)],
     )
     datedeath = models.PositiveSmallIntegerField(
         validators=[
@@ -980,8 +981,13 @@ class Demographic(BaseModel):
         (1, "Taman Kanak-kanak / Pre-School"),
         (2, "Sekolah Dasar (SD) / Primary School"),
         (3, "Sekolah Menengah Pertama (SMP) / Middle  School "),
-        (4,"Sekolah Menengah Atas (SMA) dan Sekolah Menengah Kejuruan (SMK)/ Secondary School",),
-        (5," Ahli Madya Diploma 3 dan lebih tinggi  (S1, S2, S3) / Post Secondary School",
+        (
+            4,
+            "Sekolah Menengah Atas (SMA) dan Sekolah Menengah Kejuruan (SMK)/ Secondary School",
+        ),
+        (
+            5,
+            " Ahli Madya Diploma 3 dan lebih tinggi  (S1, S2, S3) / Post Secondary School",
         ),
     ] + SKIP_CODES
     RELATIONSHIP_CHOICES = [
@@ -1011,7 +1017,7 @@ class Demographic(BaseModel):
         max_digits=5,
         decimal_places=2,
         default=NODATA[0],
-        validators=[MinValueBCValidator(0), MaxValueBCValidator(999)],
+        validators=[MinValueBCValidator(0), MaxValueBCValidator(150)],
     )
     individualgender = models.IntegerField(choices=GENDER_CHOICES, default=NODATA[0])
     individualeducation = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -1028,10 +1034,10 @@ class Demographic(BaseModel):
         choices=YES_NO_CHOICES, default=NODATA[0]
     )
     individualdaysunwell = models.PositiveIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(31)], default=NODATA[0]
     )
     individuallostdays = models.PositiveIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(31)], default=NODATA[0]
     )
 
     def __str__(self):
@@ -1091,7 +1097,7 @@ class NonMarineOrganizationMembership(BaseModel):
     )
     days = (
         models.PositiveIntegerField(
-            default=NODATA[0], validators=[MaxValueBCValidator(999)]
+            default=NODATA[0], validators=[MaxValueBCValidator(365)]
         ),
     )
     contribution = models.IntegerField(default=NODATA[0])
@@ -1114,7 +1120,7 @@ class MarineOrganizationMembership(BaseModel):
     )
     days = (
         models.PositiveIntegerField(
-            default=NODATA[0], validators=[MaxValueBCValidator(999)]
+            default=NODATA[0], validators=[MaxValueBCValidator(365)]
         ),
     )
     contribution = models.IntegerField(default=NODATA[0])

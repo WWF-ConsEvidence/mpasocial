@@ -174,8 +174,8 @@ class ListFGD(BaseAPIView):
     serializer_class = FGDSerializer
     serializer_class_csv = FGDSerializerCSV
     filterset_class = FGDFilterSet
-    order_by = ["yearmonitoring", "settlement__pk", "fgdid"]
-    queryset = FGD.objects.select_related("settlement")
+    order_by = ["yearmonitoring", "settlement__mpa__pk", "settlement__pk", "fgdid"]
+    queryset = FGD.objects.select_related("settlement", "settlement__mpa")
 
 
 class ListGlobalStep(BaseHouseholdRelatedView):
@@ -220,7 +220,7 @@ class ListKII(BaseAPIView):
     serializer_class = KIISerializer
     serializer_class_csv = KIISerializerCSV
     filterset_class = HouseholdKIIFilterSet
-    order_by = ["yearmonitoring", "settlement__mpa__pk", "settlement__pk"]
+    order_by = ["yearmonitoring", "settlement__mpa__pk", "settlement__pk", "kiiid"]
     queryset = KII.objects.select_related("settlement__mpa", "settlement")
 
 

@@ -20,7 +20,7 @@ class FGDSurveyVersion(BaseModel):
     notes = models.TextField(blank=True)
 
     class Meta:
-        ordering = ("version",)
+        ordering = ("id",)
 
     def __str__(self):
         return self.version
@@ -48,38 +48,29 @@ class FGD(BaseModel):
     starttime = models.TimeField()
     endtime = models.TimeField()
     maleparticipants = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(100)], default=NODATA[0]
     )
     femaleparticipants = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(100)], default=NODATA[0]
     )
     fgdversion = models.ForeignKey(
         FGDSurveyVersion, on_delete=models.PROTECT, default=NODATA[0]
     )
     fgroundname = models.CharField(max_length=255, default=str(NODATA[0]))
     fgroundboat = models.CharField(max_length=255, default=str(NODATA[0]))
-    fgroundtime = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    fgrounddist = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    fgroundsize = models.CharField(max_length=255, default=str(NODATA[0])
-    )
+    fgroundtime = models.CharField(max_length=255, default=str(NODATA[0]))
+    fgrounddist = models.CharField(max_length=255, default=str(NODATA[0]))
+    fgroundsize = models.CharField(max_length=255, default=str(NODATA[0]))
     mpaname = models.CharField(max_length=255, default=str(NODATA[0]))
     mpaboat = models.CharField(max_length=255, default=str(NODATA[0]))
-    mpatime = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    mpadist = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    mpasize = models.CharField(max_length=255, default=str(NODATA[0])
-    )
+    mpatime = models.CharField(max_length=255, default=str(NODATA[0]))
+    mpadist = models.CharField(max_length=255, default=str(NODATA[0]))
+    mpasize = models.CharField(max_length=255, default=str(NODATA[0]))
     ntname = models.CharField(max_length=255, default=str(NODATA[0]))
     ntboat = models.CharField(max_length=255, default=str(NODATA[0]))
-    nttime = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    ntdist = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    ntsize = models.CharField(max_length=255, default=str(NODATA[0])
-    )
+    nttime = models.CharField(max_length=255, default=str(NODATA[0]))
+    ntdist = models.CharField(max_length=255, default=str(NODATA[0]))
+    ntsize = models.CharField(max_length=255, default=str(NODATA[0]))
     mpahistl = models.TextField(default=str(NODATA[0]))
     mpahist = models.TextField(default=str(NODATA[0]))
     extbnd = models.PositiveSmallIntegerField(
@@ -195,26 +186,16 @@ class FGD(BaseModel):
     othersources = models.TextField(default=str(NODATA[0]))
     traditionalgovernancel = models.TextField(default=str(NODATA[0]))
     traditionalgovernance = models.TextField(default=str(NODATA[0]))
-    conflictn = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    congroup = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    conbtwgroups = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    conbtwgroupngov = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    congov = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    contypemarine = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    contypegov = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    contypeusers = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    contyperec = models.CharField(max_length=255, default=str(NODATA[0])
-    )
-    contypeother = models.CharField(max_length=255, default=str(NODATA[0])
-    )
+    conflictn = models.CharField(max_length=255, default=str(NODATA[0]))
+    congroup = models.CharField(max_length=255, default=str(NODATA[0]))
+    conbtwgroups = models.CharField(max_length=255, default=str(NODATA[0]))
+    conbtwgroupngov = models.CharField(max_length=255, default=str(NODATA[0]))
+    congov = models.CharField(max_length=255, default=str(NODATA[0]))
+    contypemarine = models.CharField(max_length=255, default=str(NODATA[0]))
+    contypegov = models.CharField(max_length=255, default=str(NODATA[0]))
+    contypeusers = models.CharField(max_length=255, default=str(NODATA[0]))
+    contyperec = models.CharField(max_length=255, default=str(NODATA[0]))
+    contypeother = models.CharField(max_length=255, default=str(NODATA[0]))
     contypeotherspecifyl = models.TextField(default=str(NODATA[0]))
     contypeotherspecify = models.TextField(default=str(NODATA[0]))
     dataentryid = models.ForeignKey(
@@ -345,6 +326,9 @@ class Species(BaseModel):
 
     def __str__(self):
         return self.species
+
+    class Meta:
+        verbose_name_plural = "species"
 
 
 class Stakeholder(BaseModel):

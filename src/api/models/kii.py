@@ -21,7 +21,7 @@ class KIISurveyVersion(BaseModel):
     notes = models.TextField(blank=True)
 
     class Meta:
-        ordering = ("version",)
+        ordering = ("id",)
 
     def __str__(self):
         return self.version
@@ -301,7 +301,6 @@ class KII(BaseModel):
         default=NODATA[0], validators=[MinValueBCValidator(1), MaxValueBCValidator(999)]
     )
 
-
     @property
     def mpa(self):
         return self.settlement.mpa.mpaid
@@ -357,7 +356,7 @@ class Right(BaseModel):
     userrulesinc = models.PositiveSmallIntegerField(
         choices=KII_RULE_INCLUDED_CHOICES, default=NODATA[0]
     )
-    notes = models.CharField(max_length=255, default=str(NODATA[0]))
+    notes = models.TextField(default=str(NODATA[0]))
 
     def __str__(self):
         return self.userrule
@@ -391,7 +390,7 @@ class Zone(BaseModel):
     zonecoord = models.PositiveSmallIntegerField(
         choices=KII_FREQ_CHOICES, default=NODATA[0]
     )
-    notes = models.CharField(max_length=255, default=str(NODATA[0]))
+    notes = models.TextField(default=str(NODATA[0]))
 
     def __str__(self):
         return self.zonetype
