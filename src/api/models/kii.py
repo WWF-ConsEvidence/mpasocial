@@ -30,9 +30,7 @@ class KIISurveyVersion(BaseModel):
 class KII(BaseModel):
     kiiid = models.IntegerField(primary_key=True)
     settlement = models.ForeignKey(Settlement, on_delete=models.PROTECT)
-    kiicode = models.PositiveSmallIntegerField(
-        default=NODATA[0], validators=[MinValueBCValidator(1), MaxValueBCValidator(999)]
-    )
+    kiicode = models.TextField(default=str(NODATA[0]))
     fgd = models.ForeignKey(FGD, on_delete=models.SET_NULL, null=True, blank=True)
     keyinformantrole = models.CharField(max_length=255, default=str(NODATA[0]))
     primaryinterviewer = models.ForeignKey(
@@ -290,7 +288,7 @@ class KII(BaseModel):
         blank=True,
         related_name="kii_staff_data_entry",
     )
-    datacheck = models.ForeignKey(
+    datacheckid = models.ForeignKey(
         MonitoringStaff,
         on_delete=models.SET_NULL,
         null=True,
@@ -323,6 +321,7 @@ class HabitatRule(BaseModel):
     )
     habspecificrulel = models.TextField(default=str(NODATA[0]))
     habspecificrule = models.TextField(default=str(NODATA[0]))
+    notes = models.TextField(default=str(NODATA[0]))
 
     def __str__(self):
         return self.habname
@@ -375,6 +374,7 @@ class SpeciesRule(BaseModel):
     )
     sppspecificrulel = models.TextField(default=str(NODATA[0]))
     sppspecificrule = models.TextField(default=str(NODATA[0]))
+    notes = models.TextField(default=str(NODATA[0]))
 
     def __str__(self):
         return self.spprule
