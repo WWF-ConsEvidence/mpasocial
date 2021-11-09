@@ -135,7 +135,7 @@ class FGD(BaseModel):
     penaltyotherspecifyl = models.CharField(max_length=255, default=str(NODATA[0]))
     penaltyotherspecify = models.CharField(max_length=255, default=str(NODATA[0]))
     npenalty = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        validators=[MaxValueBCValidator(7)], default=NODATA[0]
     )
     verbalsanction = models.PositiveSmallIntegerField(
         choices=YES_NO_CHOICES, default=NODATA[0]
@@ -273,10 +273,10 @@ class Users(BaseModel):
         choices=MONITORING_FREQUENCY_CHOICES, default=NODATA[0]
     )
     contributionrank = models.PositiveSmallIntegerField(
-        validators=[MinValueBCValidator(1), MaxValueBCValidator(15)], default=NODATA[0]
+        validators=[MinValueBCValidator(1), MaxValueBCValidator(25)], default=NODATA[0]
     )
     benefitrank = models.PositiveSmallIntegerField(
-        validators=[MinValueBCValidator(1), MaxValueBCValidator(15)], default=NODATA[0]
+        validators=[MinValueBCValidator(1), MaxValueBCValidator(25)], default=NODATA[0]
     )
     monitorcovidl = models.TextField(default=str(NODATA[0]))
     monitorcovid = models.TextField(default=str(NODATA[0]))
