@@ -2,6 +2,7 @@ import csv
 import json
 from django.db import connection, transaction, IntegrityError
 import datetime
+from django.apps import apps
 from django.conf import settings
 from django.utils.timezone import make_aware
 from datetime import datetime
@@ -10,189 +11,16 @@ from api.models.base import *
 from api.models.household import *
 from api.models.fgd import *
 from api.models.kii import *
-settings.TIME_ZONE
 
-
-model_choice = {
-    "livelihood": {"model": LkpLivelihood, "table": "lkp_livelihood"},
-    "surveyversion": {"model": HouseholdSurveyVersion, "table": "lkp_survey_version"},
-    "freqfishtime": {"model": LkpFreqFishTime, "table": "lkp_freq_fish_time"},
-    "lkpassetobtain": {"model": LkpAssetObtain, "table": "api_lkpassetobtain"},
-    "lkpfishtechcategory": {"model": LkpFishTechCategory, "table": "api_lkpfishtechcategory"},
-    "lkpassetassistance": {"model": LkpAssetAssistance, "table": "api_lkpassetassistance"},
-    "country": {"model": Country, "table": "country"},
-    "fishtechnique": {"model": LkpFishTechnique, "table": "lkp_fish_technique"},
-    "death": {"model": Death, "table": "api_death"},
-    "birth": {"model": Birth, "table": "api_birth"},
-    "settlement": {"model": Settlement, "table": "api_settlement"},
-    "fgdlkpsurveyversion": {"model": FGDSurveyVersion, "table": "api_fgdlkpsurveyversion"},
-    "fgd": {"model": FGD, "table": "api_fgd"},
-    "household": {"model": Household, "table": "api_household"},
-    "globalstep": {"model": GlobalStep, "table": "api_globalstep"},
-    "globalthreat": {"model": GlobalThreat, "table": "api_globalthreat"},
-    "habitat": {"model": Habitat, "table": "api_habitat"},
-    "habitatrule": {"model": HabitatRule, "table": "api_habitatrule"},
-    "kii": {"model": KII, "table": "api_kii"},
-    "kiisurveyversion": {"model": KIISurveyVersion, "table": "api_kii"},
-    "lkpfishtechnique": {"model": LkpFishTechnique, "table": "api_lkpfishtechnique"},
-    "lkpfreqfishtime": {"model": LkpFreqFishTime, "table": "api_lkpfreqfishtime"},
-    "lkplivelihood": {"model": LkpLivelihood, "table": "api_lkplivelihood"},
-    "lkpnonetoallscale": {"model": LkpNoneToAllScale, "table": "api_lkpnonetoallscale"},
-    "localstep": {"model": LocalStep, "table": "api_localstep"},
-    "localthreat": {"model": LocalThreat, "table": "api_localthreat"},
-    "marineorganizationmembership": {"model": MarineOrganizationMembership, "table": "api_marineorganizationmembership"},
-    "nonmarineorganizationmembership": {"model": NonMarineOrganizationMembership, "table": "api_nonmarineorganizationmembership"},
-    "mpainterviewyear": {"model": MPAInterviewYear, "table": "api_mpainterviewyear"},
-    "mpanetwork": {"model": MPANetwork, "table": "api_mpanetwork"},
-    "right": {"model": Right, "table": "api_right"},
-    "rule": {"model": Rule, "table": "api_rule"},
-    "seascape": {"model": Seascape, "table": "api_seascape"},
-    "species": {"model": Species, "table": "api_species"},
-    "speciesrule": {"model": SpeciesRule, "table": "api_speciesrule"},
-    "stakeholder": {"model": Stakeholder, "table": "api_stakeholder"},
-    "users": {"model": Users, "table": "api_users"},
-    "zone": {"model": Zone, "table": "api_zone"},
-}
-
-
-def get_ingest_project_choices():
-    # TOD - find a better way to
-    project_choices = dict()
-    project_choices["data__mpa"] = {str(s.mpaid): s for s in MPA.objects.all()}
-    project_choices["data__settlement"] = {str(s.settlementid): s for s in Settlement.objects.all()}
-    project_choices["data__country"] = {str(s.pk): s for s in Country.objects.all()}
-    project_choices["data__seascape"] = {str(s.pk): s for s in Seascape.objects.all()}
-    project_choices["data__mpanetwork"] = {str(s.pk): s for s in MPANetwork.objects.all()}
-    monitoringstaff = {str(s.pk): s for s in MonitoringStaff.objects.all()}
-    project_choices["data__monitoringstaff"] = monitoringstaff
-    project_choices["data__facilitator"] = monitoringstaff
-    project_choices["data__notetaker"] = monitoringstaff
-    project_choices["data__dataentryid"] = monitoringstaff
-    project_choices["data__datacheckid"] = monitoringstaff
-    project_choices["data__datacheck"] = monitoringstaff
-    project_choices["data__primaryinterviewer"] = monitoringstaff
-    project_choices["data__fieldcoordinator"] = monitoringstaff
-    project_choices["data__secondaryinterviewer"] = monitoringstaff
-    project_choices["data__householdsurveyversion"] = {str(s.pk): s for s in HouseholdSurveyVersion.objects.all()}
-    project_choices["data__surveyversionnumber"] = {str(s.pk): s for s in HouseholdSurveyVersion.objects.all()}
-    project_choices["data__livelihood"] = {str(s.code): s for s in LkpLivelihood.objects.all()}
-    project_choices["data__primarylivelihood"] = {str(s.code): s for s in LkpLivelihood.objects.all()}
-    project_choices["data__secondarylivelihood"] = {str(s.code): s for s in LkpLivelihood.objects.all()}
-    project_choices["data__tertiarylivelihood"] = {str(s.code): s for s in LkpLivelihood.objects.all()}
-    project_choices["data__freqfishtime"] = {str(s.code): s for s in LkpFreqFishTime.objects.all() }
-    project_choices["data__freqsalefish"] = {str(s.code): s for s in LkpFreqFishTime.objects.all() }
-    project_choices["data__freqeatfish"] = {str(s.code): s for s in LkpFreqFishTime.objects.all() }
-    nonetoallscale = {str(s.code): s for s in LkpNoneToAllScale.objects.all()}
-    project_choices["data__nonetoallscale"] = nonetoallscale
-    project_choices["data__percentincomefish"] = nonetoallscale
-    project_choices["data__percentproteinfish"] = nonetoallscale
-    project_choices["data__fishtechcategory"] = {str(s.pk): s for s in LkpFishTechCategory.objects.all()}
-    project_choices["data__majorfishtechnique"] = {str(s.pk): s for s in LkpFishTechCategory.objects.all()}
-    project_choices["data__fishtechnique"] = {str(s.pk): s for s in LkpFishTechnique.objects.all()}
-    project_choices["data__primaryfishtechnique"] = {str(s.pk): s for s in LkpFishTechnique.objects.all()}
-    project_choices["data__secondaryfishtechnique"] = {str(s.pk): s for s in LkpFishTechnique.objects.all()}
-    project_choices["data__tertiaryfishtechnique"] = {str(s.pk): s for s in LkpFishTechnique.objects.all()}
-    project_choices["data__assetobtain"] = {str(s.pk): s for s in LkpAssetObtain.objects.all()}
-    project_choices["data__assetcarobtain"] = {str(s.pk): s for s in LkpAssetObtain.objects.all()}
-    project_choices["data__assetmotorcycleobtain"] = {str(s.pk): s for s in LkpAssetObtain.objects.all()}
-    project_choices["data__household"] = {str(s.pk): s for s in Household.objects.all()}
-    project_choices["data__fgdversion"] = {str(s.pk): s for s in FGDSurveyVersion.objects.all()}
-    assetassistance = {str(s.pk): s for s in LkpAssetAssistance.objects.all()}
-    project_choices["data__assetassistance"] = assetassistance
-    project_choices["data__assetcarassistance"] = assetassistance
-    project_choices['data__assettruckassistance'] = assetassistance
-    project_choices['data__assetbicycleassistance'] = assetassistance
-    project_choices['data__assetmotorcycleassistance'] = assetassistance
-    project_choices['data__assetboatnomotorassistance'] = assetassistance
-    project_choices['data__assetboatoutboardassistance'] = assetassistance
-    project_choices['data__assetboatinboardassistance'] = assetassistance
-    project_choices['data__assetlandlinephoneassistance'] = assetassistance
-    project_choices['data__assetcellphoneassistance'] = assetassistance
-    project_choices['data__assettvassistance'] = assetassistance
-    project_choices['data__assetradioassistance'] = assetassistance
-    project_choices['data__assetstereoassistance'] = assetassistance
-    project_choices['data__assetcdassistance'] = assetassistance
-    project_choices['data__assetdvdassistance'] = assetassistance
-    project_choices['data__assetsatelliteassistance'] = assetassistance
-    project_choices['data__assetgeneratorassistance'] = assetassistance
-    assetobtain = {str(s.pk): s for s in LkpAssetObtain.objects.all()}
-    project_choices['data__assetcarobtain'] = assetobtain
-    project_choices['data__assettruckobtain'] = assetobtain
-    project_choices['data__assetbicycleobtain'] = assetobtain
-    project_choices['data__assetmotorcycleobtain'] = assetobtain
-    project_choices['data__assetboatnomotorobtain'] = assetobtain
-    project_choices['data__assetboatoutboardobtain'] = assetobtain
-    project_choices['data__assetboatinboardobtain'] = assetobtain
-    project_choices['data__assetlandlinephoneobtain'] = assetobtain
-    project_choices['data__assetcellphoneobtain'] = assetobtain
-    project_choices['data__assettvobtain'] = assetobtain
-    project_choices['data__assetradioobtain'] = assetobtain
-    project_choices['data__assetstereoobtain'] = assetobtain
-    project_choices['data__assetcdobtain'] = assetobtain
-    project_choices['data__assetdvdobtain'] = assetobtain
-    project_choices['data__assetsatelliteobtain'] = assetobtain
-    project_choices['data__assetgeneratorobtain'] = assetobtain
-    project_choices['data__fgd'] = {str(s.pk): s for s in FGD.objects.all()}
-    project_choices['data__kiiversion'] = {str(s.pk): s for s in KIISurveyVersion.objects.all()}
-    project_choices['data__kii'] = {str(s.pk): s for s in KII.objects.all()}
-    project_choices['data__lkpfishtechnique'] = {str(s.pk): s for s in LkpFishTechnique.objects.all()}
-    project_choices['data__lkpnonetoallscale'] = {str(s.pk): s for s in LkpNoneToAllScale.objects.all()}
-    project_choices['data__userextbnd'] = {str(s.pk): s for s in LkpNoneToAllScale.objects.all()}
-    project_choices['data__userintbnd'] = {str(s.pk): s for s in LkpNoneToAllScale.objects.all()}
-
-    return project_choices
-
-related_records = {
-    "mpa": ["country","seascape","mpanetwork"],
-    "country": [],
-    "death": ["household"],
-    "birth": ["household"],
-    "settlement": ["mpa"],
-    "fgdlkpsurveyversion": [],
-    "fgd": ["settlement","facilitator","notetaker","fgdversion","dataentryid","datacheckid"],
-    "household": ["settlement","primaryinterviewer","secondaryinterviewer","fieldcoordinator",
-                  "surveyversionnumber","primarylivelihood","secondarylivelihood","tertiarylivelihood",
-                  "freqfishtime","freqsalefish","percentincomefish","freqeatfish","percentproteinfish",
-                  "majorfishtechnique","primaryfishtechnique","secondaryfishtechnique","tertiaryfishtechnique",
-                  "assetcarobtain","assetcarassistance","assettruckassistance",
-                  "assetbicycleassistance","assetmotorcycleassistance","assetboatnomotorassistance",
-                  "assetboatoutboardassistance","assetboatinboardassistance","assetlandlinephoneassistance",
-                  "assetcellphoneassistance","assettvassistance","assetradioassistance","assetstereoassistance",
-                  "assetcdassistance","assetdvdassistance","assetsatelliteassistance","assetgeneratorassistance",
-                  "assettruckobtain","assetbicycleobtain","assetmotorcycleobtain",
-                  "assetboatnomotorobtain","assetboatoutboardobtain","assetboatinboardobtain",
-                  "assetlandlinephoneobtain","assetcellphoneobtain","assettvobtain","assetradioobtain",
-                  "assetstereoobtain","assetcdobtain","assetdvdobtain","assetsatelliteobtain",
-                  "assetgeneratorobtain","dataentryid"],
-    "globalstep": ["household"],
-    "globalthreat": ["household"],
-    "habitat": ['fgd'],
-    "habitatrule": [],
-    "kiisurveyversion": [],
-    "lkpfreqfishtime": [],
-    "lkplivelihood": [],
-    "lkpnonetoallscale": [],
-    "kii": ["settlement","fgd","primaryinterviewer","secondaryinterviewer","kiiversion","dataentryid","datacheck"],
-    "localstep": ["household"],
-    "localthreat": ["household"],
-    "marineorganizationmembership": ["household"],
-    "nonmarineorganizationmembership": ["household"],
-    "mpainterviewyear": [],
-    "mpanetwork": [],
-    "right": ["kii"],
-    "rule": ["fgd"],
-    "seascape": [],
-    "species": ["fgd"],
-    "speciesrule": ["kii"],
-    "stakeholder": ["fgd"],
-    "users": ["fgd","userextbnd","userintbnd"],
-    "zone": ["kii"],
-}
 
 def import_table(datafile, identifier, cleardata, tofile):
     print("importing " + identifier +"...")
-    thechoices = get_ingest_project_choices()
-    themodel = model_choice[identifier]["model"]
+    themodel = apps.get_model("api", identifier)  # identifier comes from command
+    related_models = []
+    for field in MPA._meta.fields:
+        if field.is_relation and field.related_model:  # does not pick up m2m fields
+            related_models.append(field.related_model)
+
     if cleardata:
         themodel.objects.all().delete()
     reader = csv.DictReader(datafile)
@@ -209,34 +37,18 @@ def import_table(datafile, identifier, cleardata, tofile):
         0: False,
     }
 
-    rowcount = 0  # TODO - find better way of getting the row in the csv
-    for row in reader:
-        rowcount += 1
-        for rec in related_records[identifier]:
-            if row[rec]:
-                try:
-                    theval = thechoices["data__"+rec][row[rec]]
-                except (KeyError):
-                    lookuperrors.append([rowcount, row[rec], rec])
-                    continue
-                row[rec] = theval
-            else:
-                row[rec] = None
-
-    datafile.seek(0)
-    reader = csv.DictReader(datafile)
-
-    if len(lookuperrors):
-        print("Import failed")
-        display_errors(lookuperrors, tofile, identifier)
-
     rowcount = 0
     for row in reader:
         rowcount += 1
-        row = {key.strip(): value for key, value in row.items()} #some field names have spaces at the end
-        for rec in related_records[identifier]:
-            if row[rec]:
-                row[rec] = thechoices["data__"+rec][row[rec]]
+        row = {key.strip(): value for key, value in row.items()}  # some field names have spaces at the end
+        for lookup_model in related_models:
+            rec = lookup_model.__name__
+            try:
+                lookup_instance = lookup_model.objects.get(pk=row[rec])
+            except lookup_model.DoesNotExist:
+                lookuperrors.append([rowcount, row[rec], rec])
+                continue
+            row[rec] = lookup_instance
 
         field_conditions_null = field_conditions(themodel)["nullf"]
         field_conditions_all = field_conditions(themodel)["all"]
@@ -275,13 +87,18 @@ def import_table(datafile, identifier, cleardata, tofile):
             print("There was an error in importing row {}. Import failed. See details below.".format(rowcount))
             print(e.args[0])
             sys.exit()
-    print("Data imported successfully!")
+
+    if len(lookuperrors):
+        print("Import failed")
+        display_errors(lookuperrors, tofile, identifier)
+    else:
+        print("Data imported successfully!")
 
 def get_table_import(table):
     return import_table
 
 def reset_pk(seq, start, identifier):
-    themodel = model_choice[identifier]["model"]
+    themodel = apps.get_model("api", identifier)
     sql = """
         ALTER SEQUENCE {thesequence} RESTART WITH {start}
         """.format(

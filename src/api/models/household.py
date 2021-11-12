@@ -49,7 +49,7 @@ class LkpFreqFishTime(BaseLookupModel):
 class LkpFishTechCategory(BaseLookupModel):
     class Meta:
         ordering = ("code",)
-        verbose_name_plural ="lkp fish tech categories"
+        verbose_name_plural = "lkp fish tech categories"
 
     def __str__(self):
         return str(self.code)
@@ -1095,10 +1095,8 @@ class NonMarineOrganizationMembership(BaseModel):
     meeting = models.PositiveSmallIntegerField(
         choices=YES_NO_CHOICES, default=NODATA[0]
     )
-    days = (
-        models.PositiveIntegerField(
-            default=NODATA[0], validators=[MaxValueBCValidator(365)]
-        ),
+    days = models.PositiveIntegerField(
+        default=NODATA[0], validators=[MaxValueBCValidator(365)]
     )
     contribution = models.IntegerField(default=NODATA[0])
     contributionunits = models.CharField(max_length=255, default=str(NODATA[0]))
@@ -1118,10 +1116,8 @@ class MarineOrganizationMembership(BaseModel):
     meeting = models.PositiveSmallIntegerField(
         choices=YES_NO_CHOICES, default=NODATA[0]
     )
-    days = (
-        models.PositiveIntegerField(
-            default=NODATA[0], validators=[MaxValueBCValidator(365)]
-        ),
+    days = models.PositiveIntegerField(
+        default=NODATA[0], validators=[MaxValueBCValidator(365)]
     )
     contribution = models.IntegerField(default=NODATA[0])
     contributionunits = models.CharField(max_length=255, default=str(NODATA[0]))
