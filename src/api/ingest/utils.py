@@ -21,7 +21,6 @@ model_choice = {
     "lkpfishtechcategory": {"model": LkpFishTechCategory, "table": "api_lkpfishtechcategory"},
     "lkpassetassistance": {"model": LkpAssetAssistance, "table": "api_lkpassetassistance"},
     "country": {"model": Country, "table": "country"},
-    "fishtechnique": {"model": LkpFishTechnique, "table": "lkp_fish_technique"},
     "death": {"model": Death, "table": "api_death"},
     "birth": {"model": Birth, "table": "api_birth"},
     "settlement": {"model": Settlement, "table": "api_settlement"},
@@ -33,8 +32,7 @@ model_choice = {
     "habitat": {"model": Habitat, "table": "api_habitat"},
     "habitatrule": {"model": HabitatRule, "table": "api_habitatrule"},
     "kii": {"model": KII, "table": "api_kii"},
-    "kiisurveyversion": {"model": KIISurveyVersion, "table": "api_kii"},
-    "lkpfishtechnique": {"model": LkpFishTechnique, "table": "api_lkpfishtechnique"},
+    "kiisurveyversion": {"model": KIISurveyVersion, "table": "api_kiisurveyversion"},
     "lkpfreqfishtime": {"model": LkpFreqFishTime, "table": "api_lkpfreqfishtime"},
     "lkplivelihood": {"model": LkpLivelihood, "table": "api_lkplivelihood"},
     "lkpnonetoallscale": {"model": LkpNoneToAllScale, "table": "api_lkpnonetoallscale"},
@@ -52,6 +50,11 @@ model_choice = {
     "stakeholder": {"model": Stakeholder, "table": "api_stakeholder"},
     "users": {"model": Users, "table": "api_users"},
     "zone": {"model": Zone, "table": "api_zone"},
+    "mpa": {"model": MPA, "table": "api_mpa"},
+    "monitoringstaff": {"model": MonitoringStaff, "table": "api_monitoringstaff"},
+    "demographic": {"model": Demographic, "table": "api_demographic"},
+    "fgdsurveyversion": {"model": FGDSurveyVersion, "table": "api_fgdsurveyversion"},
+    "householdsurveyversion": {"model": HouseholdSurveyVersion, "table": "api_householdsurveyversion"},
 }
 
 
@@ -167,7 +170,7 @@ related_records = {
     "globalstep": ["household"],
     "globalthreat": ["household"],
     "habitat": ['fgd'],
-    "habitatrule": [],
+    "habitatrule": ['kii'],
     "kiisurveyversion": [],
     "lkpfreqfishtime": [],
     "lkplivelihood": [],
@@ -187,11 +190,18 @@ related_records = {
     "stakeholder": ["fgd"],
     "users": ["fgd","userextbnd","userintbnd"],
     "zone": ["kii"],
+    "monitoringstaff": [],
+    "demographic": ["household"],
+    "lkpassetobtain": [],
+    "lkpassetassistance": [],
+    "fgdsurveyversion": [],
+    "householdsurveyversion": [],
 }
 
 def import_table(datafile, identifier, cleardata, tofile):
     print("importing " + identifier +"...")
     thechoices = get_ingest_project_choices()
+    print(identifier)
     themodel = model_choice[identifier]["model"]
     if cleardata:
         themodel.objects.all().delete()
@@ -216,7 +226,7 @@ def import_table(datafile, identifier, cleardata, tofile):
             if row[rec]:
                 try:
                     theval = thechoices["data__"+rec][row[rec]]
-                except (KeyError):
+                except KeyError:
                     lookuperrors.append([rowcount, row[rec], rec])
                     continue
                 row[rec] = theval
@@ -269,6 +279,7 @@ def import_table(datafile, identifier, cleardata, tofile):
         for fldtruth in field_conditions_all:
             if fldtruth.name == "dataentrycomplete" or fldtruth.name == "datacheckcomplete":
                 cleaned_row[fldtruth.name] = mpatruth[cleaned_row[fldtruth.name]]
+
         try:
             themodel.objects.create(**cleaned_row)
         except IntegrityError as e:
