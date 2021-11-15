@@ -51,34 +51,22 @@ def import_table(datafile, identifier, cleardata, tofile):
                 lookuperrors.append([rowcount, row[rec], rec])
                 continue
             row[rec] = lookup_instance
-        field_conditions_null = field_conditions(themodel)["nullf"]
-        field_conditions_all = field_conditions(themodel)["all"]
 
-        cleaned_row = {k: (v if (v or k not in field_conditions_null) else None) for k, v in row.items()}
-
-        # if field is blank and is not required, remove it from insert array
-        for fld_blank_not_required in field_conditions_null:
-            if fld_blank_not_required in cleaned_row and not cleaned_row[fld_blank_not_required]:
-                    del (cleaned_row[fld_blank_not_required])
-
-        # if field is blank, is required and has a default, remove it from insert array
-        for fld_blank_required_default in themodel._meta.fields:
-            if (not fld_blank_required_default.null and fld_blank_required_default.default != fields.NOT_PROVIDED and
-                    fld_blank_required_default.name in cleaned_row and not cleaned_row[fld_blank_required_default.name]):
-                del (cleaned_row[fld_blank_required_default.name])
+        # remove fields that are blank
+        cleaned_row = {k: v for k, v in row.items() if v}
 
         #convert date fields to YYYY-MM-DD if they are in MM-DD-YYYY
-        for fld_date in themodel._meta.fields:
-            if fld_date.get_internal_type() == "DateField":
+        for fld_date in themodel._meta.get_fields():
+            if fld_date.__class__.__name__ == "DateField":
                 try:
                     datetime.strptime(cleaned_row[fld_date.name], "%m/%d/%Y")
-                    cleaned_row[fldtest.name] = datetime.strptime(cleaned_row[fld_date.name], "%m/%d/%Y").strftime("%Y-%m-%d")
+                    cleaned_row[fld_date.name] = datetime.strptime(cleaned_row[fld_date.name], "%m/%d/%Y").strftime("%Y-%m-%d")
                 except:
                     #its not in MM-DD-YYYY
                     pass
         # TODO - how to identify boolean fields and make them python booleans
-        for fld_truth in themodel._meta.fields:
-            if fld_truth.name == "dataentrycomplete" or fld_truth.name == "datacheckcomplete":
+        for fld_truth in themodel._meta.get_fields():
+            if fld_truth.__class__.__name__ == "BooleanField":
                 cleaned_row[fld_truth.name] = mpatruth[cleaned_row[fld_truth.name]]
 
         try:
@@ -94,9 +82,6 @@ def import_table(datafile, identifier, cleardata, tofile):
     else:
         print("Data imported successfully!")
 
-def get_table_import(table):
-    return import_table
-
 def reset_pk(seq, start, identifier):
     themodel = apps.get_model("api", identifier)
     sql = """
@@ -107,21 +92,6 @@ def reset_pk(seq, start, identifier):
     with connection.cursor() as cursor:
         cursor.execute(sql)
         return cursor.rowcount
-
-
-def field_conditions(themodel):
-    nodata_fields = [f.name for f in themodel._meta.local_fields if f.default == NODATA[0] or f.default == str(NODATA[0])]
-    null_fields = [f.name for f in themodel._meta.local_fields if f.null]
-    blank_fields = [f.name for f in themodel._meta.local_fields if f.blank]
-    all_fields = themodel._meta.local_fields
-
-    return {
-        "nodataf": nodata_fields,
-        "nullf": null_fields,
-        "blankf": blank_fields,
-        "all": all_fields,
-    }
-
 
 def display_errors(lookuperrors, tofile, identifier):
     if tofile:
