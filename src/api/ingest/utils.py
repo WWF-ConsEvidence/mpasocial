@@ -11,16 +11,16 @@ from api.models.base import *
 from api.models.household import *
 from api.models.fgd import *
 from api.models.kii import *
+from django.db.models import fields
 
 
 def import_table(datafile, identifier, cleardata, tofile):
     print("importing " + identifier +"...")
     themodel = apps.get_model("api", identifier)  # identifier comes from command
     related_models = []
-    for field in MPA._meta.fields:
-        if field.is_relation and field.related_model:  # does not pick up m2m fields
-            related_models.append(field.related_model)
-
+    for field in themodel._meta.fields:
+        if field.is_relation and field.related_model and field.related_model.__name__ != 'User':  # does not pick up m2m fields
+            related_models.append([field.name,field.related_model])
     if cleardata:
         themodel.objects.all().delete()
     reader = csv.DictReader(datafile)
@@ -38,18 +38,23 @@ def import_table(datafile, identifier, cleardata, tofile):
     }
 
     rowcount = 0
+    # for fld in themodel._meta.fields:
+    #     print(fld.default)
+    # print(tuple(filter(lambda fld: fld.default == fields.NOT_PROVIDED, themodel._meta.fields)))
     for row in reader:
         rowcount += 1
         row = {key.strip(): value for key, value in row.items()}  # some field names have spaces at the end
         for lookup_model in related_models:
-            rec = lookup_model.__name__
+            rec = lookup_model[0] #  .__name__.lower()
             try:
-                lookup_instance = lookup_model.objects.get(pk=row[rec])
-            except lookup_model.DoesNotExist:
+                lookup_instance = None
+                # print(rec, row[rec])
+                if row[rec]:
+                    lookup_instance = lookup_model[1].objects.get(pk=row[rec])
+            except lookup_model[1].DoesNotExist:
                 lookuperrors.append([rowcount, row[rec], rec])
                 continue
             row[rec] = lookup_instance
-
         field_conditions_null = field_conditions(themodel)["nullf"]
         field_conditions_all = field_conditions(themodel)["all"]
 
@@ -61,15 +66,17 @@ def import_table(datafile, identifier, cleardata, tofile):
                 if not cleaned_row[fldtest]:
                     del (cleaned_row[fldtest])
 
+        # print((fld for fld in themodel._meta.fields if fld.default))
+
+
         # if field is blank, is required and has a default, remove it from insert array
-        for fldtest in field_conditions_all:
-            if not fldtest.null and fldtest.default:
-                if fldtest.name in cleaned_row:  # key exists in array
-                    if not cleaned_row[fldtest.name]:  # its blank
-                        del (cleaned_row[fldtest.name])
+        for fldtest in themodel._meta.fields:
+            if (not fldtest.null and fldtest.default != fields.NOT_PROVIDED and
+                    fldtest.name in cleaned_row and not cleaned_row[fldtest.name]):
+                del (cleaned_row[fldtest.name])
 
         #convert date fields to YYYY-MM-DD if they are in MM-DD-YYYY
-        for fldtest in field_conditions_all:
+        for fldtest in themodel._meta.fields:
             if fldtest.get_internal_type() == "DateField":
                 try:
                     datetime.strptime(cleaned_row[fldtest.name], "%m/%d/%Y")
@@ -78,9 +85,10 @@ def import_table(datafile, identifier, cleardata, tofile):
                     #its not in MM-DD-YYYY
                     pass
         # TODO - how to identify boolean fields and make them python booleans
-        for fldtruth in field_conditions_all:
+        for fldtruth in themodel._meta.fields:
             if fldtruth.name == "dataentrycomplete" or fldtruth.name == "datacheckcomplete":
                 cleaned_row[fldtruth.name] = mpatruth[cleaned_row[fldtruth.name]]
+
         try:
             themodel.objects.create(**cleaned_row)
         except IntegrityError as e:

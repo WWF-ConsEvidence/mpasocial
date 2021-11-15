@@ -46,6 +46,7 @@ class Command(BaseCommand):
         "stakeholder",
         "users",
         "zone",
+        "householdsurveyversion",
     )
 
     def add_arguments(self, parser):
