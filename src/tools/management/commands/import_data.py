@@ -5,7 +5,7 @@ import sys
 # from api.models import Country
 from api.models.base import MPA
 from api.models.household import *
-from api.ingest.utils import get_table_import
+from api.ingest.utils import import_table
 
 class Command(BaseCommand):
     table_choices = (
@@ -66,12 +66,5 @@ class Command(BaseCommand):
 
     def handle(self, datafile, table, clear_existing, tofile, *args, **options):
         datafile = datafile[0]
-
-        _importer = get_table_import(table)
-
-        if _importer is None:
-            raise NotImplementedError()
-
-        _importer(datafile, table, clear_existing, tofile)
-
+        import_table(datafile, table, clear_existing, tofile)
         sys.exit(0)

@@ -6,7 +6,7 @@ echo "Starting ingestion"
 echo "Clearing tables"
 python manage.py clear_models
 
-for table in "mpa" "kii" "settlement" "lkpassetobtain" "lkpassetassistance"  "householdsurveyversion" "household" "birth" "death" "demographic" "fgdsurveyversion" "fgd"  "globalstep" "globalthreat" "habitat" "kiisurveyversion" "lkpfishcategory" "lkpfishtechnique" #"habitatrule"
+for table in "mpa" "settlement" "kii" "lkpassetobtain" "lkpassetassistance" "householdsurveyversion"  "birth" "death" "demographic" "fgdsurveyversion" "fgd" "globalstep" "globalthreat" "habitat" "kiisurveyversion" "lkpfishtechcategory" "lkpfishtechnique" "lkpfreqfishtime"  "lkplivelihood" "household" "habitatrule"
 do
   python manage.py import_data importdata/$table.csv --table $table --clear-existing
 done

@@ -38,14 +38,11 @@ def import_table(datafile, identifier, cleardata, tofile):
     }
 
     rowcount = 0
-    # for fld in themodel._meta.fields:
-    #     print(fld.default)
-    # print(tuple(filter(lambda fld: fld.default == fields.NOT_PROVIDED, themodel._meta.fields)))
     for row in reader:
         rowcount += 1
         row = {key.strip(): value for key, value in row.items()}  # some field names have spaces at the end
         for lookup_model in related_models:
-            rec = lookup_model[0] #  .__name__.lower()
+            rec = lookup_model[0]
             try:
                 lookup_instance = None
                 if row[rec]:
@@ -60,33 +57,29 @@ def import_table(datafile, identifier, cleardata, tofile):
         cleaned_row = {k: (v if (v or k not in field_conditions_null) else None) for k, v in row.items()}
 
         # if field is blank and is not required, remove it from insert array
-        for fldtest in field_conditions_null:
-            if fldtest in cleaned_row:
-                if not cleaned_row[fldtest]:
-                    del (cleaned_row[fldtest])
-
-        # print((fld for fld in themodel._meta.fields if fld.default))
-
+        for fld_blank_not_required in field_conditions_null:
+            if fld_blank_not_required in cleaned_row and not cleaned_row[fld_blank_not_required]:
+                    del (cleaned_row[fld_blank_not_required])
 
         # if field is blank, is required and has a default, remove it from insert array
-        for fldtest in themodel._meta.fields:
-            if (not fldtest.null and fldtest.default != fields.NOT_PROVIDED and
-                    fldtest.name in cleaned_row and not cleaned_row[fldtest.name]):
-                del (cleaned_row[fldtest.name])
+        for fld_blank_required_default in themodel._meta.fields:
+            if (not fld_blank_required_default.null and fld_blank_required_default.default != fields.NOT_PROVIDED and
+                    fld_blank_required_default.name in cleaned_row and not cleaned_row[fld_blank_required_default.name]):
+                del (cleaned_row[fld_blank_required_default.name])
 
         #convert date fields to YYYY-MM-DD if they are in MM-DD-YYYY
-        for fldtest in themodel._meta.fields:
-            if fldtest.get_internal_type() == "DateField":
+        for fld_date in themodel._meta.fields:
+            if fld_date.get_internal_type() == "DateField":
                 try:
-                    datetime.strptime(cleaned_row[fldtest.name], "%m/%d/%Y")
-                    cleaned_row[fldtest.name] = datetime.strptime(cleaned_row[fldtest.name], "%m/%d/%Y").strftime("%Y-%m-%d")
+                    datetime.strptime(cleaned_row[fld_date.name], "%m/%d/%Y")
+                    cleaned_row[fldtest.name] = datetime.strptime(cleaned_row[fld_date.name], "%m/%d/%Y").strftime("%Y-%m-%d")
                 except:
                     #its not in MM-DD-YYYY
                     pass
         # TODO - how to identify boolean fields and make them python booleans
-        for fldtruth in themodel._meta.fields:
-            if fldtruth.name == "dataentrycomplete" or fldtruth.name == "datacheckcomplete":
-                cleaned_row[fldtruth.name] = mpatruth[cleaned_row[fldtruth.name]]
+        for fld_truth in themodel._meta.fields:
+            if fld_truth.name == "dataentrycomplete" or fld_truth.name == "datacheckcomplete":
+                cleaned_row[fld_truth.name] = mpatruth[cleaned_row[fld_truth.name]]
 
         try:
             themodel.objects.create(**cleaned_row)
