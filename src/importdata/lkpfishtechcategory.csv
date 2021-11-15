@@ -1,0 +1,17 @@
+﻿code,bahasaindonesia,english
+1,"Alat tangkap sederhana (sebagai contoh: mengambil ikan dengan tangan, 
+pancing, dan panah ikan)","Fishing by hand or handheld gear (e.g., gleaning, hand line, spear gun)"
+2,"Alat tangkap pasif (sebagai contoh: perangkap, jaring insang, 
+trammel net)","Fishing with stationary net (e.g., traps, gill net, trammel net)"
+3,"Alat tangkap aktif (sebagai contoh: pukat harimau, pukat cincin, 
+dan pukat pantai)","Fishing with mobile net (e.g., trawl, purse seine, beach seine)"
+4,Alat tangkappancing pasif (sebagai contoh: long line),"Fishing with stationary line (e.g., long line)"
+5,Alat tangkap pancing aktif (sebagai contoh: trolling),"Fishing with mobile line (e.g., trolling)"
+6,"Menangkap ikan dengan bahan peledak atau bahan beracun (sebagai contoh: bom, sianida, racun)","Fishing with explosives or chemicals (e.g., bomb, cyanide, poison)"
+993,Pertanyaan tidak diminta (tidak ada skip logic),Question not asked as part of this survey
+994,Pertanyaan dilewati berdasarkan skip logic survei,Question skipped based on survey skip logic
+995,Tidak ada data,Missing data
+996,Lainnya,Other
+997,Tidak Tahu,Do not know
+998,Tidak Ada/Tidak Sesuai,Do not have/Not applicable
+999,Menolak,Refuse

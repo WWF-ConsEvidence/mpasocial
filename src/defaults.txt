@@ -1,0 +1,220 @@
+created_on,<class 'django.db.models.fields.NOT_PROVIDED'>
+updated_on,<class 'django.db.models.fields.NOT_PROVIDED'>
+updated_by,<class 'django.db.models.fields.NOT_PROVIDED'>
+householdid,<class 'django.db.models.fields.NOT_PROVIDED'>
+settlement,<class 'django.db.models.fields.NOT_PROVIDED'>
+kkcode,995
+primaryinterviewer,<class 'django.db.models.fields.NOT_PROVIDED'>
+secondaryinterviewer,995
+fieldcoordinator,<class 'django.db.models.fields.NOT_PROVIDED'>
+yearmonitoring,995
+interviewdate,<class 'django.db.models.fields.NOT_PROVIDED'>
+interviewstart,<class 'django.db.models.fields.NOT_PROVIDED'>
+interviewend,<class 'django.db.models.fields.NOT_PROVIDED'>
+interviewlength,<class 'django.db.models.fields.NOT_PROVIDED'>
+surveyversionnumber,<class 'django.db.models.fields.NOT_PROVIDED'>
+usualfish,995
+householdsize,995
+yearsresident,995
+primarymarketname,995
+secondarymarketname,995
+timemarket,995
+timesecondarymarket,995
+paternalethnicity,995
+maternalethnicity,995
+religion,995
+primarylivelihood,995
+primarylivelihoodyear,995
+secondarylivelihood,995
+secondarylivelihoodyear,995
+tertiarylivelihood,995
+tertiarylivelihoodyear,995
+freqfishtime,995
+freqsalefish,995
+percentincomefish,995
+freqeatfish,995
+percentproteinfish,995
+majorfishtechnique,995
+primaryfishtechnique,995
+secondaryfishtechnique,995
+tertiaryfishtechnique,995
+lessproductivedaysfishing,995
+poorcatch,995
+poorcatchunits,995
+poorcatchunitscategory,995
+poorfishincome,995
+poorfishincomeunits,995
+moreproductivedaysfishing,995
+goodcatch,995
+goodcatchunits,995
+goodcatchunitscategory,995
+goodfishincome,995
+goodfishincomeunits,995
+economicstatustrend,995
+economicstatusreasonl,995
+economicstatusreason,995
+economicadjustreasonl,995
+economicadjustreason,995
+assetcar,995
+assetcarobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetcaryear,995
+assetcarassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetcarassistanceother,995
+assettruck,995
+assettruckobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assettruckyear,995
+assettruckassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assettruckassistanceother,995
+assetcartruck,995
+assetbicycle,995
+assetbicycleobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetbicycleyear,995
+assetbicycleassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetbicycleassistanceother,995
+assetmotorcycle,995
+assetmotorcycleobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetmotorcycleyear,995
+assetmotorcycleassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetmotorcycleassistanceother,995
+assetboatnomotor,995
+assetboatnomotorobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetboatnomotoryear,995
+assetboatnomotorassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetboatnomotorassistanceother,995
+assetboatoutboard,995
+assetboatoutboardobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetboatoutboardyear,995
+assetboatoutboardassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetboatoutboardassistanceother,995
+assetboatinboard,995
+assetboatinboardobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetboatinboardyear,995
+assetboatinboardassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetboatinboardassistanceother,995
+assetlandlinephone,995
+assetlandlinephoneobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetlandlinephoneyear,995
+assetlandlinephoneassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetlandlinephoneassistanceother,995
+assetcellphone,995
+assetcellphoneobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetcellphoneyear,995
+assetcellphoneassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetcellphoneassistanceother,995
+assetphonecombined,995
+assettv,995
+assettvobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assettvyear,995
+assettvassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assettvassistanceother,995
+assetradio,995
+assetradioobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetradioyear,995
+assetradioassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetradioassistanceother,995
+assetstereo,995
+assetstereoobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetstereoyear,995
+assetstereoassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetstereoassistanceother,995
+assetcd,995
+assetcdobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetcdyear,995
+assetcdassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetcdassistanceother,995
+assetdvd,995
+assetdvdobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetdvdyear,995
+assetdvdassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetdvdassistanceother,995
+assetentertain,995
+assetsatellite,995
+assetsatelliteobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetsatelliteyear,995
+assetsatelliteassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetsatelliteassistanceother,995
+assetgenerator,995
+assetgeneratorobtain,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetgeneratoryear,995
+assetgeneratorassistance,<class 'django.db.models.fields.NOT_PROVIDED'>
+assetgeneratorassistanceother,995
+cookingfuel,995
+householddeath,995
+householdbirth,995
+fsnotenough,995
+fsdidnotlast,995
+fsbalanceddiet,995
+fsadultskip,995
+fsfreqadultskip,995
+fseatless,995
+fshungry,995
+fschildportion,995
+fslowcostfood,995
+fschildskip,995
+fsfreqchildskip,995
+fsnomealchild,995
+rightsaccess,995
+rightsharvest,995
+rightsmanage,995
+rightsexclude,995
+rightstransfer,995
+socialconflict,995
+marinegroup,995
+numbermarinegroup,995
+othergroup,995
+numberothergroup,995
+votedistrict,995
+votenational,995
+numlocalthreat,995
+numglobalthreat,995
+numlocalaction,995
+numglobalaction,995
+placehappy,995
+placefavourite,995
+placemiss,995
+placebest,995
+placefishhere,995
+placebemyself,995
+primarylivelihoodcovid,995
+secondarylivelihoodcovid,995
+tertiarylivelihoodcovid,995
+freqfishtimecovid,995
+freqsalefishcovid,995
+percentincomefishcovid,995
+freqeatfishcovid,995
+percentproteinfishcovid,995
+majorfishtechniquecovid,995
+poorfishincomecovid,995
+goodfishincomecovid,995
+fsnotenoughcovid,995
+fsdidnotlastcovid,995
+fsbalanceddietcovid,995
+fseatlesscovid,995
+fshungrycovid,995
+fschildportioncovid,995
+fslowcostfoodcovid,995
+fsfreqchildskipcovid,995
+fsnomealchildcovid,995
+marinegroupcovid,995
+othergroupcovid,995
+anyotherinfo,995
+willingparticipant,995
+notes,995
+dataentrycomplete,<class 'django.db.models.fields.NOT_PROVIDED'>
+datacheckcomplete,<class 'django.db.models.fields.NOT_PROVIDED'>
+dataentryid,<class 'django.db.models.fields.NOT_PROVIDED'>
+datacheckid,<class 'django.db.models.fields.NOT_PROVIDED'>
+worstdaycatch,995
+worstdaycatchunits,995
+bestdaycatch,995
+bestdaycatchunits,995
+averageincome,995
+averageincomeunits,995
+worstincome,995
+worstincomeunits,995
+bestincome,995
+bestincomeunits,995
+entrycomputeridentifier,995
+entryhouseholdid,<class 'django.db.models.fields.NOT_PROVIDED'>
+pilotreferencecode,995
+baseline_t2_pairs,<class 'django.db.models.fields.NOT_PROVIDED'>

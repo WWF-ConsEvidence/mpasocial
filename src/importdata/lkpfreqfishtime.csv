@@ -1,0 +1,13 @@
+created_on,updated_on,code,bahasaindonesia,english,updated_by_id
+2021-10-11 21:53:36.706161 +00:00,2021-10-11 21:53:36.706212 +00:00,1,Satu kali atau tidak pernah,Every day,
+2021-10-11 21:53:36.714098 +00:00,2021-10-11 21:53:36.714140 +00:00,2,Berberapa kali,A few times a week,
+2021-10-11 21:53:36.716720 +00:00,2021-10-11 21:53:36.716760 +00:00,3,Berberapa kali dalanm satu bulan,A few times per month,
+2021-10-11 21:53:36.719266 +00:00,2021-10-11 21:53:36.719307 +00:00,4,Berberapa kali dalam satu minggu,A few times per year,
+2021-10-11 21:53:36.721894 +00:00,2021-10-11 21:53:36.721935 +00:00,5,Lebih dari berberapa kali dalam satu minggu,Once in a year or less,
+2021-10-11 21:53:36.723425 +00:00,2021-10-11 21:53:36.723439 +00:00,993,Pertanyaan tidak diminta (tidak ada skip logic),Question not asked (no skip logic),
+2021-10-11 21:53:36.724628 +00:00,2021-10-11 21:53:36.724640 +00:00,994,SKIP,Skipped question,
+2021-10-11 21:53:36.725819 +00:00,2021-10-11 21:53:36.725831 +00:00,995,**Tidak ada data**,No data,
+2021-10-11 21:53:36.727000 +00:00,2021-10-11 21:53:36.727013 +00:00,996,Lainnya,Other,
+2021-10-11 21:53:36.728225 +00:00,2021-10-11 21:53:36.728237 +00:00,997,Tidak Tahu,Do Not Know,
+2021-10-11 21:53:36.729490 +00:00,2021-10-11 21:53:36.729501 +00:00,998,Tidak Sesuai,Not Applicable,
+2021-10-11 21:53:36.730692 +00:00,2021-10-11 21:53:36.730703 +00:00,999,Menolak,Refused,

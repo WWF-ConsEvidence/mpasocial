@@ -1,0 +1,12 @@
+code,bahasaindonesia,english,updated_by_id
+1,Tidak ada,None,
+2,Sebagian kecil,Some,
+3,Sekitar setengah,About Half,
+4,Sebagian besar,Most,
+5,Semuanya,All,
+993,Pertanyaan tidak diminta (tidak ada skip logic),Question not asked (no skip logic),
+994,SKIP,Skipped question,
+995,**Tidak ada data**,No data,
+997,Tidak Tahu,Do Not Know,
+998,Tidak Sesuai,Not Applicable,
+999,Menolak,Refused,
