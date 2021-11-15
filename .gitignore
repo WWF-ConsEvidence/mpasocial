@@ -108,3 +108,6 @@ src/dataimport/
 .idea/
 
 src/static/
+
+# ingestion
+src/importdata
