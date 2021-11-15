@@ -38,6 +38,9 @@ def import_table(datafile, identifier, cleardata, tofile):
     }
 
     rowcount = 0
+    # for fld in themodel._meta.fields:
+    #     print(fld.default)
+    # print(tuple(filter(lambda fld: fld.default == fields.NOT_PROVIDED, themodel._meta.fields)))
     for row in reader:
         rowcount += 1
         row = {key.strip(): value for key, value in row.items()}  # some field names have spaces at the end
@@ -61,6 +64,9 @@ def import_table(datafile, identifier, cleardata, tofile):
             if fldtest in cleaned_row:
                 if not cleaned_row[fldtest]:
                     del (cleaned_row[fldtest])
+
+        # print((fld for fld in themodel._meta.fields if fld.default))
+
 
         # if field is blank, is required and has a default, remove it from insert array
         for fldtest in themodel._meta.fields:
