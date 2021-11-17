@@ -15,7 +15,7 @@ from django.db.models import fields
 
 
 def import_table(datafile, identifier, cleardata, tofile):
-    print("importing " + identifier +"...")
+    print("Importing " + identifier +"...")
     themodel = apps.get_model("api", identifier)  # identifier comes from command
     related_models = []
     for field in themodel._meta.fields:
@@ -41,6 +41,7 @@ def import_table(datafile, identifier, cleardata, tofile):
     for row in reader:
         rowcount += 1
         row = {key.strip(): value for key, value in row.items()}  # some field names have spaces at the end
+
         for lookup_model in related_models:
             rec = lookup_model[0]
             try:
@@ -73,6 +74,9 @@ def import_table(datafile, identifier, cleardata, tofile):
             themodel.objects.create(**cleaned_row)
         except IntegrityError as e:
             print("There was an error in importing row {}. Import failed. See details below.".format(rowcount))
+            print(e.args[0])
+            sys.exit()
+        except ValueError as e:
             print(e.args[0])
             sys.exit()
 
