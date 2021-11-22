@@ -111,3 +111,6 @@ src/static/
 
 # ingestion
 src/importdata
+
+# Mac DS Files
+.DS_Store

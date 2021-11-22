@@ -51,7 +51,7 @@ class Command(BaseCommand):
     )
 
     def add_arguments(self, parser):
-        parser.add_argument("datafile", nargs=1, type=argparse.FileType("r", encoding='utf-8-sig'))
+        parser.add_argument("datafile", nargs=1, type=argparse.FileType('r', encoding='utf-8-sig'))
         parser.add_argument("--table", choices=self.table_choices)
         parser.add_argument(
             "--clear-existing",

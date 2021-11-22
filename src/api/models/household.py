@@ -167,7 +167,8 @@ class Household(BaseModel):
     interviewend = models.TimeField(blank=True, null=True)
     interviewlength = models.TimeField(blank=True, null=True)
     surveyversionnumber = models.ForeignKey(
-        HouseholdSurveyVersion, on_delete=models.PROTECT
+        HouseholdSurveyVersion, on_delete=models.PROTECT,
+        default=NODATA[0],
     )
     usualfish = models.CharField(max_length=255, default=str(NODATA[0]))
     householdsize = models.PositiveSmallIntegerField(default=NODATA[0])

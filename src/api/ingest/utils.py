@@ -12,6 +12,7 @@ from api.models.household import *
 from api.models.fgd import *
 from api.models.kii import *
 from django.db.models import fields
+from django.db.models.deletion import ProtectedError
 
 
 def import_table(datafile, identifier, cleardata, tofile):
@@ -22,7 +23,11 @@ def import_table(datafile, identifier, cleardata, tofile):
         if field.is_relation and field.related_model and field.related_model.__name__ != 'User':  # does not pick up m2m fields
             related_models.append([field.name,field.related_model])
     if cleardata:
-        themodel.objects.all().delete()
+        try:
+            themodel.objects.all().delete()
+        except ProtectedError as e:
+            print(e.args[0])
+            sys.exit()
     reader = csv.DictReader(datafile)
     lookuperrors = []
     mpatruth = {
@@ -54,7 +59,11 @@ def import_table(datafile, identifier, cleardata, tofile):
             row[rec] = lookup_instance
 
         # remove fields that are blank
-        cleaned_row = {k: v for k, v in row.items() if v}
+
+        cleaned_row = {k: (v.strip() if isinstance(v, str) else v) for k, v in row.items()}
+        cleaned_row = {k: v for k, v in cleaned_row.items() if v}
+
+        # cleaned_row = {k: v for k, v in cleaned_row.items() if v == ' '}
 
         #convert date fields to YYYY-MM-DD if they are in MM-DD-YYYY
         for fld_date in themodel._meta.get_fields():
