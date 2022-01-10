@@ -112,7 +112,7 @@ class FGD(BaseModel):
     bndotherspecifyl = models.CharField(max_length=255, default=str(NODATA[0]))
     bndotherspecify = models.CharField(max_length=255, default=str(NODATA[0]))
     penaltyverbal = models.PositiveSmallIntegerField(
-        validators=[MaxValueBCValidator(999)], default=NODATA[0]
+        choices=YES_NO_CHOICES, default=NODATA[0]
     )
     penaltywritten = models.PositiveSmallIntegerField(
         choices=YES_NO_CHOICES, default=NODATA[0]
