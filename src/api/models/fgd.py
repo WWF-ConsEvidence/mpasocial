@@ -74,10 +74,10 @@ class FGD(BaseModel):
     mpahistl = models.TextField(default=str(NODATA[0]))
     mpahist = models.TextField(default=str(NODATA[0]))
     extbnd = models.PositiveSmallIntegerField(
-        validators=[MinValueBCValidator(1), MaxValueBCValidator(100)], default=NODATA[0]
+        validators=[MinValueBCValidator(0), MaxValueBCValidator(100)], default=NODATA[0]
     )
     intbnd = models.PositiveSmallIntegerField(
-        validators=[MinValueBCValidator(1), MaxValueBCValidator(100)], default=NODATA[0]
+        validators=[MinValueBCValidator(0), MaxValueBCValidator(100)], default=NODATA[0]
     )
     bndlandmarks = models.PositiveSmallIntegerField(
         choices=YES_NO_CHOICES, default=NODATA[0]
