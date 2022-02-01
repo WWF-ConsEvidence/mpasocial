@@ -40,13 +40,36 @@ class FGD(BaseModel):
         related_name="fgd_staff_notetaker",
     )
     fgdate = models.DateField(null=True, blank=True)
+    fgday = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MinValueValidator(31)],
+        null=True, 
+        blank=True
+    )
+    fgmonth = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MinValueValidator(12)],
+        null=True, 
+        blank=True
+    )
+    fgyear = models.PositiveSmallIntegerField(
+        choices=YEAR_CHOICES,
+        validators=[MinValueBCValidator(2000), MaxValueBCValidator(MAX_YEAR)],
+        null=True,
+        blank=True
+    )
+
     yearmonitoring = models.PositiveSmallIntegerField(
         choices=YEAR_CHOICES,
         validators=[MinValueBCValidator(2000), MaxValueBCValidator(MAX_YEAR)],
         default=NODATA[0],
     )
-    starttime = models.TimeField()
-    endtime = models.TimeField()
+    starttime = models.TimeField(
+        null=True,
+        blank=True
+    )
+    endtime = models.TimeField(
+        null=True,
+        blank=True
+    )
     maleparticipants = models.PositiveSmallIntegerField(
         validators=[MaxValueBCValidator(100)], default=NODATA[0]
     )
@@ -56,7 +79,7 @@ class FGD(BaseModel):
     fgdversion = models.ForeignKey(
         FGDSurveyVersion, on_delete=models.PROTECT, default=NODATA[0]
     )
-    fgroundname = models.CharField(max_length=255, default=str(NODATA[0]))
+    fgroundname = models.TextField(default=str(NODATA[0]))
     fgroundboat = models.CharField(max_length=255, default=str(NODATA[0]))
     fgroundtime = models.CharField(max_length=255, default=str(NODATA[0]))
     fgrounddist = models.CharField(max_length=255, default=str(NODATA[0]))

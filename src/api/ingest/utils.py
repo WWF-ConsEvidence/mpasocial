@@ -38,9 +38,6 @@ def import_table(datafile, identifier, cleardata, tofile):
     }
 
     rowcount = 0
-    # for fld in themodel._meta.fields:
-    #     print(fld.default)
-    # print(tuple(filter(lambda fld: fld.default == fields.NOT_PROVIDED, themodel._meta.fields)))
     for row in reader:
         rowcount += 1
         print(list(row.keys())[0] + ": " + list(row.values())[0], end="\r")
@@ -50,7 +47,6 @@ def import_table(datafile, identifier, cleardata, tofile):
             rec = lookup_model[0] #  .__name__.lower()
             try:
                 lookup_instance = None
-                # print(rec, row[rec])
                 if row[rec]:
                     lookup_instance = lookup_model[1].objects.get(pk=row[rec])
             except lookup_model[1].DoesNotExist:
@@ -67,9 +63,6 @@ def import_table(datafile, identifier, cleardata, tofile):
             if fldtest in cleaned_row:
                 if not cleaned_row[fldtest]:
                     del (cleaned_row[fldtest])
-
-        # print((fld for fld in themodel._meta.fields if fld.default))
-
 
         # if field is blank, is required and has a default, remove it from insert array
         for fldtest in themodel._meta.fields:
