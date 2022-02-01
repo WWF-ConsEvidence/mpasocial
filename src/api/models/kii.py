@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
 from .base import (
     NODATA,
@@ -43,6 +44,23 @@ class KII(BaseModel):
         default=NODATA[0],
     )
     kiidate = models.DateField(blank=True, null=True)
+    kiiday = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MinValueValidator(31)],
+        null=True,
+        blank=True
+    )
+    kiimonth = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MinValueValidator(12)],
+        null=True,
+        blank=True
+    )
+    kiiyear = models.PositiveSmallIntegerField(
+        choices=YEAR_CHOICES,
+        validators=[MinValueBCValidator(2000), MaxValueBCValidator(MAX_YEAR)],
+        null=True,
+        blank=True
+    )
+
     yearmonitoring = models.PositiveSmallIntegerField(
         choices=YEAR_CHOICES,
         validators=[MinValueBCValidator(2000), MaxValueBCValidator(MAX_YEAR)],
