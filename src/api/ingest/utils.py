@@ -43,7 +43,9 @@ def import_table(datafile, identifier, cleardata, tofile):
     # print(tuple(filter(lambda fld: fld.default == fields.NOT_PROVIDED, themodel._meta.fields)))
     for row in reader:
         rowcount += 1
-        row = {key.strip(): value for key, value in row.items()}  # some field names have spaces at the end
+        print(list(row.keys())[0] + ": " + list(row.values())[0], end="\r")
+
+        row = {key.strip(): value.strip() for key, value in row.items()}  # some field names have spaces at the end
         for lookup_model in related_models:
             rec = lookup_model[0] #  .__name__.lower()
             try:
