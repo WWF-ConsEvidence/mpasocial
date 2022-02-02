@@ -163,6 +163,23 @@ class Household(BaseModel):
         default=NODATA[0],
     )
     interviewdate = models.DateField(blank=True, null=True)
+    interviewday = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MinValueValidator(31)],
+        null=True,
+        blank=True
+    )
+    interviewmonth = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MinValueValidator(12)],
+        null=True,
+        blank=True
+    )
+    interviewyear = models.PositiveSmallIntegerField(
+        choices=YEAR_CHOICES,
+        validators=[MinValueBCValidator(2000), MaxValueBCValidator(MAX_YEAR)],
+        null=True,
+        blank=True
+    )
+
     interviewstart = models.TimeField(blank=True, null=True)
     interviewend = models.TimeField(blank=True, null=True)
     interviewlength = models.TimeField(blank=True, null=True)
