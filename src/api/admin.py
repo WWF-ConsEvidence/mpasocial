@@ -145,3 +145,5 @@ admin.site.register(Species)
 admin.site.register(SpeciesRule)
 admin.site.register(Stakeholder)
 admin.site.register(Zone)
+admin.site.register(Users)
+

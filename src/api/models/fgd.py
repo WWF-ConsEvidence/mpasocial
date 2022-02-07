@@ -308,6 +308,10 @@ class Users(BaseModel):
     conservationimpactcovidl = models.TextField(default=str(NODATA[0]))
     conservationimpactcovid = models.TextField(default=str(NODATA[0]))
 
+    class Meta:
+        verbose_name = "Users"
+        verbose_name_plural = "Users"
+
     def __str__(self):
         return self.username
 
