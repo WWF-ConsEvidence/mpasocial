@@ -124,6 +124,9 @@ class LkpLivelihoodAdmin(LookupAdmin):
 class LkpNoneToAllScaleAdmin(LookupAdmin):
     pass
 
+@admin.register(Users)
+class UsersAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Users._meta.get_fields()]
 
 admin.site.register(Country)
 admin.site.register(Death)
@@ -145,5 +148,4 @@ admin.site.register(Species)
 admin.site.register(SpeciesRule)
 admin.site.register(Stakeholder)
 admin.site.register(Zone)
-admin.site.register(Users)
 
