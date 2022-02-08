@@ -8,6 +8,14 @@ from .models import *
 UserModel = get_user_model()
 admin.site.unregister(UserModel)
 
+fields_to_ignore = ['created_on', 'updated_on', 'updated_by']
+
+
+class CustomModelAdmin(admin.ModelAdmin):
+    def __init__(self, model, admin_site):
+        self.list_display = [field.name for field in model._meta.fields if field.name not in fields_to_ignore]
+        super(CustomModelAdmin, self).__init__(model, admin_site)
+
 
 class LookupAdmin(admin.ModelAdmin):
     list_display = ["code", "bahasaindonesia", "english"]
@@ -40,13 +48,13 @@ class UserProfileAdmin(UserAdmin):
 
 
 @admin.register(FGDSurveyVersion)
-class FGDSurveyVersionAdmin(admin.ModelAdmin):
-    list_display = ["id", "version"]
+class FGDSurveyVersionAdmin(CustomModelAdmin):
+    pass
 
 
 @admin.register(HouseholdSurveyVersion)
-class HouseholdSurveyVersionAdmin(admin.ModelAdmin):
-    list_display = ["id", "version"]
+class HouseholdSurveyVersionAdmin(CustomModelAdmin):
+    pass
 
 
 @admin.register(KIISurveyVersion)
@@ -124,28 +132,105 @@ class LkpLivelihoodAdmin(LookupAdmin):
 class LkpNoneToAllScaleAdmin(LookupAdmin):
     pass
 
-@admin.register(Users)
-class UsersAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Users._meta.get_fields()]
 
-admin.site.register(Country)
-admin.site.register(Death)
-admin.site.register(Demographic)
-admin.site.register(FGD)
-admin.site.register(GlobalStep)
-admin.site.register(GlobalThreat)
-admin.site.register(Habitat)
-admin.site.register(HabitatRule)
-admin.site.register(KII)
-admin.site.register(LocalStep)
-admin.site.register(LocalThreat)
-admin.site.register(MarineOrganizationMembership)
-admin.site.register(MPA)
-admin.site.register(NonMarineOrganizationMembership)
-admin.site.register(Right)
-admin.site.register(Rule)
-admin.site.register(Species)
-admin.site.register(SpeciesRule)
-admin.site.register(Stakeholder)
-admin.site.register(Zone)
+@admin.register(Users)
+class UsersAdmin(CustomModelAdmin):
+    pass
+
+@admin.register(Country)
+class CountryAdmin(CustomModelAdmin):
+    pass
+
+@admin.register(Death)
+class DeathAdmin(CustomModelAdmin):
+    pass
+
+@admin.register(Demographic)
+class DemographicAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(FGD)
+class FGDAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(GlobalStep)
+class GlobalStepAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(GlobalThreat)
+class GlobalThreatAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(Habitat)
+class HabitatAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(HabitatRule)
+class HabitatRuleAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(KII)
+class KIIAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(LocalStep)
+class LocalStepAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(LocalThreat)
+class LocalThreatAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(MarineOrganizationMembership)
+class MarineOrganizationMembershipAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(MPA)
+class MPAAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(NonMarineOrganizationMembership)
+class NonMarineOrganizationMembershipAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(Right)
+class RightAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(Rule)
+class RuleAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(Species)
+class SpeciesAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(SpeciesRule)
+class SpeciesRuleAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(Stakeholder)
+class StakeholderAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(Zone)
+class ZoneAdmin(CustomModelAdmin):
+    pass
 
